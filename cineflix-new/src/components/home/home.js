@@ -8,11 +8,11 @@ import axios from "axios";
 
 const Home = () => {
 
-    const [nowPlaying, setnowPlaying] = useState([])
+    const [popular, setpopular] = useState([])
 
     const getApiData = async () =>{
-        const res = await axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US&page=1");
-        setnowPlaying(res.data.results)
+        const res = await axios.get("https://api.themoviedb.org/3/movie/popular?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US&page=1");
+        setpopular(res.data.results)
     }
 
     useEffect(() => {
@@ -34,7 +34,7 @@ const Home = () => {
 
                 >
                     {
-                        nowPlaying.map(movie => (
+                        popular.map(movie => (
                             <Link style={{ textDecoration: "none", color: "white" }} to={`/movie/${movie.id}`} >
                                 <div className="posterImage">
                                     <img src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} />

@@ -1,10 +1,11 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import NavBar from './components/NavBar/NavBar';
-// import MovieList from './components/MovieList/MovieList';
 import MovieDetail from './components/MovieDetail/MovieDetail';
 import Home from './components/home/home';
 import MovieList from './components/movieList/MovieList';
+import TvList from './components/TV/TvList/TvList'
+import TvDetail from './components/TV/TvDetail/TvDetail'
 
 
 function App() {
@@ -13,12 +14,14 @@ function App() {
     <Router> 
     <NavBar/>
             <Routes>
-                <Route path="/movie/:id" element = {< MovieDetail/>}></Route>
-                {/* <Route path="/tv/:id" element = {< MovieDetail/>}></Route> */}
+              {/* For Movies */}
                 <Route path="/" element = {<Home />}></Route>
-                <Route path=":platform/:type" element={<MovieList />}></Route>
-                {/* <Route path="tv/:type" element={<MovieList />}></Route> */}
-                
+                <Route path="/movies/:type" element={<MovieList />}></Route>
+                <Route path="/movie/:id" element = {< MovieDetail/>}></Route>
+
+              {/* For Tv */}
+              <Route path="/tvs/:type" element={<TvList/>}></Route>
+              <Route path="/tv/:id" element = {<TvDetail/>}></Route>
              
             </Routes>
         </Router>
