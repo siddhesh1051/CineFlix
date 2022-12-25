@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import "./movie.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -11,54 +11,54 @@ const MovieDetail = () => {
     const [Similar, setSimilar] = useState();
     const [Videos, setVideos] = useState();
     const { id } = useParams();
-  
+
 
     // Initial Useeffect
     useEffect(() => {
         getData();
-        
+
     }, []);
 
     const getData = async () => {
         const res = await axios.get(
             `https://api.themoviedb.org/3/movie/${id}?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`
         )
-            setMovie(res.data)
+        setMovie(res.data)
     };
 
     useEffect(() => {
         getCast();
-        
+
     }, []);
 
     const getCast = async () => {
         const res = await axios.get(
             `https://api.themoviedb.org/3/movie/${id}/credits?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`
         )
-            setCast(res.data)
+        setCast(res.data)
     };
     useEffect(() => {
         getSimilar();
-        
+
     }, []);
 
     const getSimilar = async () => {
         const res = await axios.get(
             `https://api.themoviedb.org/3/movie/${id}/similar?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`
         )
-            setSimilar(res.data)
+        setSimilar(res.data)
     };
 
     useEffect(() => {
         getVideos();
-        
+
     }, []);
 
     const getVideos = async () => {
         const res = await axios.get(
             `https://api.themoviedb.org/3/movie/${id}/videos?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`
         )
-            setVideos(res.data)
+        setVideos(res.data)
     };
 
     return (
@@ -96,7 +96,7 @@ const MovieDetail = () => {
 
                     </div>
 
-                   
+
                 </div>
 
                 <div className="movie__detailRight">
@@ -117,7 +117,7 @@ const MovieDetail = () => {
                                         {hero.key && (
                                             <div className="trailer&btn">
 
-                                                <a href={hero.key?`https://www.youtube.com/watch?v=${hero.key}`:""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
+                                                <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
                                                     Watch Trailer<i class="fa fa-play"></i>
                                                 </a>
                                                 <button className="bookmarkbtn">
@@ -169,7 +169,7 @@ const MovieDetail = () => {
                                 {currentMovieDetail ? currentMovieDetail.runtime + " mins" : ""}
                             </div>
                         </div>
-                        
+
                         <hr color="#2F3335" />
 
                         <div className="duration">
@@ -178,8 +178,8 @@ const MovieDetail = () => {
                                 {currentMovieDetail ? currentMovieDetail.status : ""}
                             </div>
                         </div>
-                        <hr color="#2F3335" />                
-                        
+                        <hr color="#2F3335" />
+
                     </div>
 
                 </div>
@@ -195,16 +195,16 @@ const MovieDetail = () => {
                                 <>
                                     {hero.profile_path && (
                                         <div className="cast_image_div">
-                                            <div className="image_div">
-                                                <img
-                                                    className="cast_image"
-                                                    src={
-                                                        "https://image.tmdb.org/t/p/original" +
-                                                        hero.profile_path
-                                                    }
-                                                    alt=""
-                                                />
-                                            </div>
+
+                                            <img
+                                                className="cast_image"
+                                                src={
+                                                    "https://image.tmdb.org/t/p/original" +
+                                                    hero.profile_path
+                                                }
+                                                alt=""
+                                            />
+
                                             <div className="cast_details">
                                                 <span className="cast_name">{hero.name}</span>
                                                 <span className="cast_role">
@@ -260,7 +260,7 @@ const MovieDetail = () => {
                             </>
                         ))}
 
-                    <p className="show_more">Show More<i class="fa fa-arrow-right"></i></p>
+                    <Link to={`/movie/${id}/similar`} className="show_more">Show More<i class="fa fa-arrow-right"></i></Link>
                 </div>
             </div>
 

@@ -197,14 +197,17 @@ const TvDetail = () => {
                 <div className="cast_div">
 
                     <div className="movie_cast">
-                        <h2 className="casttitle" >Cast & Crew</h2>
+                    <h2 className="casttitle" >Cast & Crew</h2>
                         {Cast &&
                             Cast.cast &&
                             Cast.cast.slice(0, 4).map((hero) => (
                                 <>
+                                
                                     {hero.profile_path && (
+                                        
                                         <div className="cast_image_div">
-                                            <div className="image_div">
+                                            
+                                            
                                                 <img
                                                     className="cast_image"
                                                     src={
@@ -213,7 +216,7 @@ const TvDetail = () => {
                                                     }
                                                     alt=""
                                                 />
-                                            </div>
+                                            
                                             <div className="cast_details">
                                                 <span className="cast_name">{hero.name}</span>
                                                 <span className="cast_role">
@@ -269,8 +272,7 @@ const TvDetail = () => {
                             </>
                         ))}
 
-                    <p className="show_more">Show More<i class="fa fa-arrow-right"></i></p>
-                </div>
+<Link to={`/tv/${id}/similar`} className="show_more">Show More<i class="fa fa-arrow-right"></i></Link>                </div>
             </div>
 
 

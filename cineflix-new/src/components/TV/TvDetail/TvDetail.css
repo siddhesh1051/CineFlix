@@ -293,71 +293,74 @@
   }
   
   
-  .cast_image{
-    border-radius: 50%;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 4rem;
-    height: 4rem;
-   
-  }
-  .casttitle{
-    font-family: 'Poppins', sans-serif;
-    margin-left: 1rem;
-    font-size: 2rem;
-    margin-bottom: 0.3rem;
-    
-    
-  }
+ 
+.cast_image{
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+  width: 5rem;
+  height: 5rem;
   
-  .cast_image_div{
-    display: inline-flex;
-    
-    
-  }
-  .cast_div{
-    display: inline-flex;
-    margin-top: 6rem;
-    
-   
-  }
-  .cast_name{
-    font-size: 1.1rem;
-    font-weight: 500;
-    font-family: 'Poppins', sans-serif;
-    display: block;
-    width: 300px;
-    
-    
-    
-    
-  }
+}
+
+.casttitle{
+  font-family: 'Poppins', sans-serif;
+  margin-left: 1rem;
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
   
-  .cast_role{
-    font-size: 0.9rem;
-    font-weight: 300;
-    font-family: 'Poppins', sans-serif;
-    color: #c0c0c2;
-    display: block;
-    
-    
-  }
-  .cast_details{
-    margin-top: 1.4rem;
-    margin-left: 0.6rem;
-  }
   
-  .show_more{
-    font-family: 'Poppins', sans-serif;
-    color: #ff505b;
-    margin-left: 1rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    transition-duration: 0.2s;
-    
-  }
+}
+
+.cast_image_div{
+  display: inline-flex;
+  
+  
+  
+}
+.cast_div{
+  display: inline-flex;
+  margin-top: 6rem;
+  
+ 
+}
+.cast_name{
+  font-size: 1.1rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  display: block;
+  width: 300px;
+  
+  
+  
+  
+}
+
+.cast_role{
+  font-size: 0.9rem;
+  font-weight: 300;
+  font-family: 'Poppins', sans-serif;
+  color: #c0c0c2;
+  display: block;
+  
+  
+}
+.cast_details{
+  margin-top: 1.4rem;
+  margin-left: 0.6rem;
+}
+
+.show_more{
+  font-family: 'Poppins', sans-serif;
+  color: #ff505b;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  
+}
   .show_more>i{
     margin-left: 0.6rem;
     transition-duration: 0.2s;

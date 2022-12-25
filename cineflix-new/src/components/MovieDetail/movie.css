@@ -295,14 +295,15 @@ hr{
 
 .cast_image{
   border-radius: 50%;
-  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4rem;
-  height: 4rem;
- 
+  margin: 1rem;
+  width: 5rem;
+  height: 5rem;
+  
 }
+
 .casttitle{
   font-family: 'Poppins', sans-serif;
   margin-left: 1rem;
@@ -314,6 +315,8 @@ hr{
 
 .cast_image_div{
   display: inline-flex;
+  
+  
   
   
 }
@@ -356,6 +359,7 @@ hr{
   margin-top: 1rem;
   cursor: pointer;
   transition-duration: 0.2s;
+  display: block;
   
 }
 .show_more>i{
