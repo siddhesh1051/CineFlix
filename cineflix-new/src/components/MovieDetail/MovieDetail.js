@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import "./movie.css";
-import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 
-const Movie = () => {
+const MovieDetail = () => {
     const [currentMovieDetail, setMovie] = useState();
     const [Cast, setCast] = useState();
     const [Similar, setSimilar] = useState();
     const [Videos, setVideos] = useState();
     const { id } = useParams();
+  
 
     // Initial Useeffect
     useEffect(() => {
@@ -268,7 +269,7 @@ const Movie = () => {
     );
 };
 
-export default Movie;
+export default MovieDetail;
 
 {
     /* <div className="movie__rating">

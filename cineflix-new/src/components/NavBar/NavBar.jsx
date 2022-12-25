@@ -1,6 +1,6 @@
 import React from 'react'
 import Logo from './logo.png'
-import { FiBookmark, FiClock, FiHeart, FiHome,FiLogOut,FiStar, FiWatch} from "react-icons/fi";
+import { FiBookmark, FiClock, FiHeart, FiHome,FiLogOut,FiStar} from "react-icons/fi";
 import { Link } from 'react-router-dom';
 
 function NavBar() {
