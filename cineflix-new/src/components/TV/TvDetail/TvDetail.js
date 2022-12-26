@@ -228,7 +228,7 @@ const TvDetail = () => {
                                 </>
                             ))}
 
-                        <p className="show_more">Show More<i class="fa fa-arrow-right"></i></p>
+                        <Link to={`/tv/${id}/credits`} className="show_more">Show More<i class="fa fa-arrow-right"></i></Link>
                     </div>
                 </div>
             </div>

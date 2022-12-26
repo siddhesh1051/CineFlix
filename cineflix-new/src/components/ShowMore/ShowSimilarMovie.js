@@ -3,9 +3,10 @@ import "../MovieDetail/movie.css"
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { BsArrowLeftCircle} from "react-icons/bs";
 
 
-const  ShowSimilar = () => {
+const  ShowSimilarMovie = () => {
 
     const [Similar, setSimilar] = useState();
     const { id } = useParams();
@@ -33,6 +34,7 @@ const  ShowSimilar = () => {
        
             
             <div className="similar">
+                <Link to={`/movie/${id}`} className="back__similar "><BsArrowLeftCircle className=" scale-[3] duration-300 ease-in-out hover:text-[#ff505b]"/></Link>
 
                 <div className="similar_row">
                     <div className="similar_title">
@@ -80,6 +82,6 @@ const  ShowSimilar = () => {
     );
 };
 
-export default  ShowSimilar;
+export default  ShowSimilarMovie;
 
 

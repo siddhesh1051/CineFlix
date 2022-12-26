@@ -216,7 +216,7 @@ const MovieDetail = () => {
                                 </>
                             ))}
 
-                        <p className="show_more">Show More<i class="fa fa-arrow-right"></i></p>
+                        <Link to={`/movie/${id}/credits`} className="show_more">Show More<i class="fa fa-arrow-right"></i></Link>           
                     </div>
                 </div>
             </div>

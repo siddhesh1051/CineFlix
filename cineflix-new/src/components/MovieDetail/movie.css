@@ -82,83 +82,7 @@
   color: #b6b6b6;
   max-width: 100%;
 }
-/* .movie__voteCount {
-    margin-left: 2rem;
-    font-family: 'Poppins', sans-serif;
-    font-style: italic;
-}
 
-.movie__genres {
-    margin: 1.5rem 0;
-    font-family: 'Poppins', sans-serif;
-}
-
-.movie__genre {
-    padding: 0.75rem;
-    border: 2px solid white;
-    border-radius: 20px;
-    margin-right: 1rem;
-    font-family: 'Poppins', sans-serif;
-}
-
-
-.movie__detailRightBottom {
-    margin: 2rem 0;
-    flex: 0.8;
-    font-family: 'Poppins', sans-serif;
-}
-
-.synopsisText {
-    font-size: 2rem;
-    margin-bottom: 1.25rem;
-    font-weight: 400;
-    display: flex;
-    position: relative;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-}
-.synopsisText > div:last-of-type {
-    margin-left: auto;
-}
-
-.movie__links {
-    position: relative;
-    bottom: 120px;
-    display: flex;
-    justify-content: space-between;
-    width: 75%;
-}
-
-.movie__heading {
-    font-size: 2.2rem;
-}
-
-.movie__Button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.8rem 2rem;
-    border-radius: 20px;
-    cursor: pointer;
-    width: 150px;
-    color: black;
-    font-weight: bold;
-}
-
-.movie__homeButton {
-    background-color:rgb(255, 0, 0);
-    
-}
-
-.movie__imdbButton {
-    background-color:#f3ce13;
-}
-
-.newTab {
-    margin-left: 1.4rem;
-} */
-
-/* new css */
 
 .trailerbtn {
   width: fit-content;
@@ -380,6 +304,12 @@ hr{
   position: relative;
   margin-top: 6rem;
   
+}
+.back__similar{
+  position: absolute;
+  top: -3rem;
+  left: 2rem;
+
 }
 .similar_title{
   float: left;

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function NavBar() {
   return (
     <div className="min-w-[14%] ] ">
-      <div className="sidebar flex flex-col max-h-fit fixed shadow-inner">
+      <div className="sidebar flex flex-col max-h-fit fixed rounded-lg  " >
       <Link to="/"><img src={Logo} alt="" className="logo cursor-pointer my-10 mx-6 inline object-fill h-10 w-48" /></Link>
         <div className="movie__section mb-6 ">
           <h1 className="movies__title mx-7 my-2 text-[#9696A3]">
