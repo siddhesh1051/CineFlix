@@ -3,6 +3,7 @@ import "./movieList.css"
 import { useParams } from "react-router-dom"
 import Cards from "../card/Card"
 import axios from "axios"
+import "react-loading-skeleton/dist/skeleton.css";
 
 
 const MovieList = () => {

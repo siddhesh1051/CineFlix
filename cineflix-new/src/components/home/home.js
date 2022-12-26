@@ -5,6 +5,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { Link } from "react-router-dom";
 import MovieList from "../movieList/MovieList";
 import axios from "axios";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Home = () => {
 

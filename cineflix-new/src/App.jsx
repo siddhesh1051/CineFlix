@@ -1,4 +1,5 @@
 import './App.css';
+import "react-loading-skeleton/dist/skeleton.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import NavBar from './components/NavBar/NavBar';
 import MovieDetail from './components/MovieDetail/MovieDetail';
