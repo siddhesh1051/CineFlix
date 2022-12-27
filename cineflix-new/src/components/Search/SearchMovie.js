@@ -26,7 +26,6 @@ const SearchMovie = () => {
 
     const handleOnChange1 = (event) => {
         setsearchText(event.target.value)
-        console.log(searchText);
     }
 
 
@@ -38,7 +37,6 @@ const SearchMovie = () => {
                 <div className="text-center flex w-full justify-center mt-5 mb-9">
 
                     <div className="w-[50%] text-center px-5 py-4 flex items-center bg-[#292929] rounded-2xl justify-center drop-shadow-2xl" >
-                        {/* <i class="fa fa-search text-red-500 mr-4"></i> */}
                         <FiSearch className="searchIcon text-[#ff505b] mr-4" />
                         <input type="text" className="SearchBar text-xl bg-[#292929] text-slate-300 flex-1 duration-500 outline-none focus:outline-none placeholder:text-[#454F51]" placeholder="Enter Movie Name" value={searchText} onChange={handleOnChange1} />
 
@@ -56,11 +54,8 @@ const SearchMovie = () => {
                 }
             </div>
 
-            <div className="erroe absolute left-[50%] top-[50%] text-[#454F51]">
+            <div className="error absolute left-[50%] top-[50%] text-[#454F51]">
                 {!searchText && (<h2 className=" ">Enter Something</h2>)}
-
-                {!movieList &&
-                    (<h2>No Movies Found</h2>)}
             </div>
 
 
