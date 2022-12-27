@@ -11,6 +11,8 @@ import ShowSimilarMovie from './components/ShowMore/ShowSimilarMovie'
 import ShowSimilarTv from './components/ShowMore/ShowSimilarTv'
 import ShowCastMovie from './components/ShowMore/ShowCastMovie';
 import ShowCastTv from './components/ShowMore/ShowCastTv';
+import Search from './components/Search/Search';
+
 
 
 function App() {
@@ -20,7 +22,9 @@ function App() {
     <NavBar/>
             <Routes>
               {/* For Movies */}
+              
                 <Route path="/" element = {<Home />}></Route>
+                <Route path="/movies/search" element={<Search/>}></Route>
                 <Route path="/movies/:type" element={<MovieList />}></Route>
                 <Route path="/movie/:id" element = {< MovieDetail/>}></Route>
                 <Route path="/movie/:id/similar" element = {< ShowSimilarMovie/>}></Route>
