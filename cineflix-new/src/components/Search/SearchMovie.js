@@ -35,7 +35,7 @@ const SearchMovie = () => {
             <div className="search__bar__div w-full text-center">
 
                 <h2 className="m-4">Search Movies</h2>
-                <div className="text-center flex w-full justify-center mt-4 mb-9">
+                <div className="text-center flex w-full justify-center mt-5 mb-9">
 
                     <div className="w-[50%] text-center px-5 py-4 flex items-center bg-[#292929] rounded-2xl justify-center drop-shadow-2xl" >
                         {/* <i class="fa fa-search text-red-500 mr-4"></i> */}
