@@ -1,35 +1,53 @@
 import React, { useEffect, useState } from "react"
 import "../movieList/movieList.css"
-import { useParams } from "react-router-dom"
 import Cards from "../card/Card"
 import axios from "axios"
 import "react-loading-skeleton/dist/skeleton.css";
 import { FiSearch } from "react-icons/fi"
+import { HashLoader } from "react-spinners";
 
 
 const SearchMovie = () => {
 
     const [movieList, setMovieList] = useState([])
     const [searchText, setsearchText] = useState("")
+    const [Page, setPage] = useState(1)
+    const [Loading, setLoading] = useState(true)
 
 
 
     useEffect(() => {
         getData()
-    }, [searchText])
+    }, [searchText, Page])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
+    })
 
 
     const getData = async () => {
-        const res = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US&query=${searchText}&page=1&include_adult=false`)
+        const res = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US&query=${searchText}&page=${Page}&include_adult=false`)
         setMovieList(res.data.results)
+
     }
 
     const handleOnChange1 = (event) => {
         setsearchText(event.target.value)
     }
+    const handleNextClick = () => {
+        setPage(Page + 1)
+        setLoading(!Loading)
 
+    }
+    const handlePreviousClick = () => {
+        setPage(Page - 1)
+        setLoading(!Loading)
+    }
+    const style = { position: "absolute", top: "53%", left: "57%", transform: "translate(-50%, -50%)" };
+    return <>
 
-    return (
         <div className="movie__list w-full">
             <div className="search__bar__div w-full text-center">
 
@@ -45,23 +63,40 @@ const SearchMovie = () => {
             </div>
 
 
+            {
+                Loading
+                    ?
+                    <div style={style}>
+                        <HashLoader
+                            color="#ff505b"
+                            size={100}
+                        />
+                    </div>
+                    :
+                    <><div className="list__cards">
+                        {movieList.map(movie => (
+                            <Cards movie={movie} />
+                        ))}
+                    </div>
+                        <div className="btn__div text-center m-4 p-4 text-[#ff505b] text-xl">
+                            <button onClick={handlePreviousClick} disabled={!searchText ? "true" : ""} className="disabled:hidden m-4"><i class="fa fa-arrow-left mr-3"></i>Previous</button>
+                            <button onClick={handleNextClick} disabled={!searchText ? "true" : ""} className="disabled:hidden m-4">Next<i class="fa fa-arrow-right ml-3"></i></button>
 
-            <div className="list__cards">
-                {
-                    movieList.map(movie => (
-                        <Cards movie={movie} />
-                    ))
-                }
+                        </div>
+                    </>
+            }
+
+            <div className="error absolute left-[50%] top-[50%] text-[#454F51] -z-10">
+                {!searchText && !Loading && (<h2 className=" ">Enter Something</h2>)}
             </div>
 
-            <div className="error absolute left-[50%] top-[50%] text-[#454F51]">
-                {!searchText && (<h2 className=" ">Enter Something</h2>)}
-            </div>
+
 
 
 
         </div>
-    )
+
+    </>
 }
 
 export default SearchMovie
