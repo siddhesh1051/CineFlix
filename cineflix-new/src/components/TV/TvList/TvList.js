@@ -46,10 +46,11 @@ const MovieList = () => {
     }
     const style = { position: "absolute", top: "53%", left: "57%", transform: "translate(-50%, -50%)" };
 
-    return (<>
+    return (
+    <>
 
         <div className="movie__list">
-            <h2 className="list__title">{(type ? type : "NOW PLAYING").toUpperCase()}</h2>
+            <h2 className="list__title">{(type ? type.replace("_"," ") : "NOW PLAYING").toUpperCase()+ " TV SHOWS"}</h2>
             {Loading && type
                 ?
                 <div style={style}>

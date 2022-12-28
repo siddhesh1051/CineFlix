@@ -46,12 +46,12 @@ const SearchMovie = () => {
         setLoading(!Loading)
     }
     const style = { position: "absolute", top: "53%", left: "57%", transform: "translate(-50%, -50%)" };
-    return <>
+    return( <>
 
         <div className="movie__list w-full">
             <div className="search__bar__div w-full text-center">
 
-                <h2 className="m-4">Search Movies</h2>
+                <h2 className="m-4">Search TV Shows</h2>
                 <div className="text-center flex w-full justify-center mt-5 mb-9">
 
                     <div className="w-[50%] text-center px-5 py-4 flex items-center bg-[#292929] rounded-2xl justify-center drop-shadow-2xl" >
@@ -97,6 +97,7 @@ const SearchMovie = () => {
         </div>
 
     </>
+    )
 }
 
 export default SearchMovie
