@@ -3,12 +3,15 @@ import "../MovieDetail/movie.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { PropagateLoader } from "react-spinners";
+
 
 
 
 const ShowCastMovie = () => {
 
     const [Cast, setCast] = useState();
+    const [Loading, setLoading] = useState(true)
     const { id } = useParams();
 
 
@@ -25,12 +28,27 @@ const ShowCastMovie = () => {
         )
         setCast(res.data)
     };
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 1200)
+    }, [])
+    const style = { position: "absolute", top: "53%", left: "57%", transform: "translate(-50%, -50%)" }
 
 
 
 
     return (
-        
+        <>
+        {Loading
+                ?
+                <div style={style}>
+                    <PropagateLoader
+                        color="#ec616a"
+                        size={20}
+                    />
+                </div>
+                :
         <div className="movie">
 
             <div className="movie__detail">
@@ -74,6 +92,8 @@ const ShowCastMovie = () => {
 
 
         </div>
+    }
+        </>
     );
 };
 
