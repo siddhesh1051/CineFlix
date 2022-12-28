@@ -24,21 +24,23 @@ const Home = () => {
     return (
         <>
             <div className="poster">
+            {popular.length > 0 &&
                 <Carousel
                     showThumbs={false}
                     autoPlay={true}
                     interval={3000}
                     infiniteLoop={true}
-                    showStatus={false}
                     swipeable={true}
+                    stopOnHover={true}
+                    
 
 
                 >
                     {
                         popular.map(movie => (
-                            <Link style={{ textDecoration: "none", color: "white" }} to={`/movie/${movie.id}`} >
+                            <Link key={movie.id} style={{ textDecoration: "none", color: "white" }} to={`/movie/${movie.id}`} >
                                 <div className="posterImage">
-                                    <img src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} />
+                                    <img src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} alt=""/>
                                 </div>
                                 <div className="posterImage__overlay">
                                     <div className="posterImage__title">{movie ? movie.original_title : ""}</div>
@@ -55,6 +57,7 @@ const Home = () => {
                         ))
                     }
                 </Carousel>
+}
                 <MovieList />
             </div>
         </>
