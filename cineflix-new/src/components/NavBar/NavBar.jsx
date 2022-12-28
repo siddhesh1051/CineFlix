@@ -13,7 +13,7 @@ function NavBar() {
           <h1 className="movies__title mx-7 my-2 text-[#9696A3]">
             Movies
           </h1>
-          <Link to="/movies/search"><p className="Popular px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiSearch/><span className='ml-3'>Search Movies</span></p></Link>
+          <Link to="/movies/search"><p className="Popular px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b] visited:bg-[#262627]"><FiSearch/><span className='ml-3'>Search Movies</span></p></Link>
           <Link to="/movies/popular"><p className="Popular px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiHome/><span className='ml-3'>Popular</span></p></Link>
           <Link to="/movies/top_rated" ><p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiStar/><span className='ml-3'>Top Rated</span></p></Link>
           <Link to="/movies/upcoming"><p className="Upcoming px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiClock/><span className='ml-3'>Upcoming</span></p></Link>
