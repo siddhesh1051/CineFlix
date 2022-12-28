@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { BsArrowLeftCircle} from "react-icons/bs";
+import { PropagateLoader } from "react-spinners";
 
 
 
 const ShowSimilarTv = () => {
 
     const [Similar, setSimilar] = useState();
+    const [Loading, setLoading] = useState(true)
     const { id } = useParams();
   
 
@@ -27,13 +29,28 @@ const ShowSimilarTv = () => {
             setSimilar(res.data)
     };
 
-    
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 1200)
+    },[])
+    const style = { position: "absolute", top: "53%", left: "57%", transform: "translate(-50%, -50%)" }
+
 
    
 
     return (
-       
-
+        <>
+        
+        {   Loading
+                ?
+                <div style={style}>
+                    <PropagateLoader
+                        color="#ec616a"
+                        size={20}
+                    />
+                </div>
+                :
             <div className="similar">
                   <Link to={`/tv/${id}`} className="back__similar "><BsArrowLeftCircle className=" scale-[3] duration-300 ease-in-out hover:text-[#ff505b]"/></Link>
 
@@ -78,8 +95,8 @@ const ShowSimilarTv = () => {
                 </div>
             </div>
 
-
-        
+        }                                  
+            </>
     );
 };
 

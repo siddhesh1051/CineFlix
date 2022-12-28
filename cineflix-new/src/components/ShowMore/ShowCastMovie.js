@@ -30,6 +30,7 @@ const ShowCastMovie = () => {
 
 
     return (
+        
         <div className="movie">
 
             <div className="movie__detail">

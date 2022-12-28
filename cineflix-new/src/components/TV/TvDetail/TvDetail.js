@@ -3,6 +3,7 @@ import "./TvDetail.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { HashLoader } from "react-spinners";
 
 
 const TvDetail = () => {
@@ -10,6 +11,7 @@ const TvDetail = () => {
     const [Cast, setCast] = useState();
     const [Similar, setSimilar] = useState();
     const [Videos, setVideos] = useState();
+    const [Loading, setLoading] = useState(true)
     const { id } = useParams();
   
 
@@ -60,8 +62,26 @@ const TvDetail = () => {
         )
             setVideos(res.data)
     };
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
+    },[])
+    const style = { position: "absolute", top: "53%", left: "57%", transform: "translate(-50%, -50%)" };
+
 
     return (
+        <>
+        {Loading
+                ?
+                <div style={style}>
+                    <HashLoader
+                        color="#ff505b"
+                        size={100}
+                    />
+                </div>
+                :
+
         <div className="movie">
             <div className="movie__intro">
                 <img
@@ -277,6 +297,8 @@ const TvDetail = () => {
 
 
         </div>
+    }
+        </>
     );
 };
 
