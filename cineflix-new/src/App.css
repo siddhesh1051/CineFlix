@@ -6,11 +6,13 @@
   height: 40vmin;
   pointer-events: none;
 }
+.active{
+  color: #ff505b;
+  
+}
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  
 }
 
 .App-header {
@@ -26,6 +28,13 @@
 
 .App-link {
   color: #61dafb;
+}
+.active{
+  
+  background-color: #262627;
+}
+.popular:active{
+  color: aqua;
 }
 
 @keyframes App-logo-spin {
