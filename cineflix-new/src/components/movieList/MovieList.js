@@ -50,7 +50,7 @@ const MovieList = () => {
     <>
 
         <div className="movie__list">
-            <h2 className="list__title">{(type ? type.replace("_"," ") : "NOW PLAYING").toUpperCase() + " MOVIES"}</h2>
+            <h2 className="list__title">{(type ? type.replace("_"," ")+ " MOVIES" : "NOW PLAYING").toUpperCase()}</h2>
             {Loading && type
                 ?
                 <div style={style}>

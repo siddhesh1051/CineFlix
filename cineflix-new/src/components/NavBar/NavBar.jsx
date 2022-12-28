@@ -36,7 +36,7 @@ function NavBar() {
           <NavLink to="/favourite"><p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiHeart/><span className='ml-3'>My Favourites</span></p></NavLink>
         </div>
         <Link to="/"><div className="logout">
-        <p className="Top Rated  px-2 mx-5 py-2 my-1 flex items-center bg-slate-700 rounded-lg mt-8 cursor-pointer"><FiLogOut/><span className='ml-3'>Log Out</span></p>
+        <p className="Top Rated  px-2 mx-5 py-2 my-1 flex items-center bg-[#4e4e4f] rounded-lg mt-8 cursor-pointer"><FiLogOut/><span className='ml-3'>Log Out</span></p>
         </div></Link>
       </div>
     </div>
