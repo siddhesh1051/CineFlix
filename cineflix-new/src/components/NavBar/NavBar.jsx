@@ -32,8 +32,8 @@ function NavBar() {
         <h1 className="library__title mx-7 my-2 text-[#9696A3]">
             Library
           </h1>
-          <NavLink to="/error"><p className="Popular px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiBookmark/><span className='ml-3'>Watch Later</span></p></NavLink>
-          <NavLink to="/error"><p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiHeart/><span className='ml-3'>My Favourites</span></p></NavLink>
+          <NavLink to="/watch_later"><p className="Popular px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiBookmark/><span className='ml-3'>Watch Later</span></p></NavLink>
+          <NavLink to="/favourite"><p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiHeart/><span className='ml-3'>My Favourites</span></p></NavLink>
         </div>
         <Link to="/"><div className="logout">
         <p className="Top Rated  px-2 mx-5 py-2 my-1 flex items-center bg-slate-700 rounded-lg mt-8 cursor-pointer"><FiLogOut/><span className='ml-3'>Log Out</span></p>
