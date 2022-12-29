@@ -22,7 +22,7 @@ const MovieList = () => {
 
     useEffect(() => {
         getData()
-    }, [type])
+    }, [type,Page])
 
 
     useEffect(() => {

@@ -18,11 +18,11 @@ const MovieList = () => {
 
     useEffect(() => {
         getData()
-    }, [])
+    },[])
 
     useEffect(() => {
         getData()
-    }, [type])
+    }, [type,Page])
 
 
     useEffect(() => {
