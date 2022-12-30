@@ -13,18 +13,19 @@ import ShowCastMovie from './components/ShowMore/ShowCastMovie';
 import ShowCastTv from './components/ShowMore/ShowCastTv';
 import SearchMovie from './components/Search/SearchMovie';
 import SearchTv from './components/Search/SearchTv';
-
+import Menu from './components/Menu';
 
 
 function App() {
   return (
-    <div className='flex '>
+    <div className="flex lg:gap-[1.5rem] ">
     <Router> 
     <NavBar/>
+    <Menu/>
             <Routes>
               {/* For Movies */}
               
-                <Route path="/" element = {<Home />}></Route>
+                <Route path="/" element = {<Home/>}></Route>
                 <Route path="/movies/search" element={<SearchMovie/>}></Route>
                 <Route path="/movies/:type" element={<MovieList />}></Route>
                 <Route path="/movie/:id" element = {< MovieDetail/>}></Route>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import "../movieList/movieList.css"
-import TvCards from "../TV/TvCard/TvCard"
+import Cards from "../card/Card"
 import axios from "axios"
 import "react-loading-skeleton/dist/skeleton.css";
 import { FiSearch } from "react-icons/fi"
@@ -46,7 +46,7 @@ const SearchMovie = () => {
         setLoading(!Loading)
     }
     const style = { position: "absolute", top: "53%", left: "57%", transform: "translate(-50%, -50%)" };
-    return( <>
+    return <>
 
         <div className="movie__list w-full">
             <div className="search__bar__div w-full text-center">
@@ -54,9 +54,9 @@ const SearchMovie = () => {
                 <h2 className="m-4">Search TV Shows</h2>
                 <div className="text-center flex w-full justify-center mt-5 mb-9">
 
-                    <div className="w-[50%] text-center px-5 py-4 flex items-center bg-[#292929] rounded-2xl justify-center drop-shadow-2xl" >
+                    <div className="md:w-[70%] w-[100%] text-center px-5 py-4 flex items-center bg-[#292929] rounded-2xl justify-center drop-shadow-2xl" >
                         <FiSearch className="searchIcon text-[#ff505b] mr-4" />
-                        <input type="text" className="SearchBar text-xl bg-[#292929] text-slate-300 flex-1 duration-500 outline-none focus:outline-none placeholder:text-[#454F51]" placeholder="Enter TV Show Name" value={searchText} onChange={handleOnChange1} />
+                        <input type="text" className="SearchBar text-xl bg-[#292929] text-slate-300 w-[60%] flex-1 duration-500 outline-none focus:outline-none placeholder:text-[#454F51]" placeholder="Enter TV Show Name" value={searchText} onChange={handleOnChange1} />
 
                     </div>
                 </div>
@@ -75,7 +75,7 @@ const SearchMovie = () => {
                     :
                     <><div className="list__cards">
                         {movieList.map(movie => (
-                            <TvCards movie={movie} />
+                            <Cards movie={movie} />
                         ))}
                     </div>
                         <div className="btn__div text-center m-4 p-4 text-[#ff505b] text-xl">
@@ -86,7 +86,7 @@ const SearchMovie = () => {
                     </>
             }
 
-            <div className="error absolute left-[50%] top-[50%] text-[#454F51] -z-10">
+            <div className="error absolute sm:top-[50%] sm:left-[50%] text-[#454F51] -z-10">
                 {!searchText && !Loading && (<h2 className=" ">Enter Something</h2>)}
             </div>
 
@@ -97,7 +97,6 @@ const SearchMovie = () => {
         </div>
 
     </>
-    )
 }
 
 export default SearchMovie

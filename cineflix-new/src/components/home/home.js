@@ -28,10 +28,12 @@ const Home = () => {
                 <Carousel
                     showThumbs={false}
                     autoPlay={true}
-                    interval={3000}
+                    interval={4000}
                     infiniteLoop={true}
                     swipeable={true}
                     stopOnHover={true}
+                    dynamicHeight={false}
+                    
                     
 
 
@@ -51,7 +53,7 @@ const Home = () => {
                                             <i className="fas fa-star" />{" "}
                                         </span>
                                     </div>
-                                    <div className="posterImage__description">{movie ? movie.overview : ""}</div>
+                                    <div className="posterImage__description">{movie ? movie.overview.slice(0,140) + "....." : ""}</div>
                                 </div>
                             </Link>
                         ))
