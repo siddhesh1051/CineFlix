@@ -22,6 +22,7 @@ const MovieList = () => {
 
     useEffect(() => {
         getData()
+        setLoading(!Loading)
     }, [type,Page])
 
 

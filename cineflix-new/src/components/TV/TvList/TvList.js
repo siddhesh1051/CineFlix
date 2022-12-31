@@ -22,6 +22,7 @@ const MovieList = () => {
 
     useEffect(() => {
         getData()
+        setLoading(!Loading)
     }, [type,Page])
 
 
@@ -38,11 +39,13 @@ const MovieList = () => {
     const handleNextClick = () => {
         setPage(Page + 1)
         setLoading(!Loading)
+        
 
     }
     const handlePreviousClick = () => {
         setPage(Page - 1)
         setLoading(!Loading)
+        
     }
     const style = { position: "absolute", top: "53%", left: "57%", transform: "translate(-50%, -50%)" };
 

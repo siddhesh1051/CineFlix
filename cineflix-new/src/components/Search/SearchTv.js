@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import "../movieList/movieList.css"
-import Cards from "../card/Card"
+import TvCards from "../TV/TvCard/TvCard"
 import axios from "axios"
 import "react-loading-skeleton/dist/skeleton.css";
 import { FiSearch } from "react-icons/fi"
@@ -75,7 +75,7 @@ const SearchMovie = () => {
                     :
                     <><div className="list__cards">
                         {movieList.map(movie => (
-                            <Cards movie={movie} />
+                            <TvCards movie={movie} />
                         ))}
                     </div>
                         <div className="btn__div text-center m-4 p-4 text-[#ff505b] text-xl">
