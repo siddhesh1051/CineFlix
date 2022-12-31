@@ -51,7 +51,7 @@ const ShowSimilarTv = () => {
                     />
                 </div>
                 :
-            <div className="similar">
+            <div className="similar lg:mx-2  mx-[4.75rem]">
                   <Link to={`/tv/${id}`} className="back__similar "><BsArrowLeftCircle className=" scale-[3] duration-300 ease-in-out hover:text-[#ff505b]"/></Link>
 
                 <div className="similar_row">

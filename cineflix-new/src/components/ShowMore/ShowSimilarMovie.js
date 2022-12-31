@@ -48,10 +48,10 @@ const ShowSimilarMovie = () => {
                     />
                 </div>
                 :
-                <div className="similar">
+                <div className="similar lg:mx-2  mx-[4.75rem]">
                     <Link to={`/movie/${id}`} className="back__similar "><BsArrowLeftCircle className=" scale-[3] duration-300 ease-in-out hover:text-[#ff505b]" /></Link>
 
-                    <div className="similar_row">
+                    <div className="similar_rowX">
                         <div className="similar_title">
 
                             <h3 className="sim">Similar</h3>
@@ -61,7 +61,7 @@ const ShowSimilarMovie = () => {
                             Similar.results.map((hero) => (
                                 <>
                                     {hero.poster_path && (
-                                        <div className="cards">
+                                        <div className="cards mx-10">
 
                                             <img
                                                 className="cards__img"

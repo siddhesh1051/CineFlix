@@ -55,7 +55,7 @@ const ShowCastMovie = () => {
 
                 <div className="cast_div">
 
-                    <div className="movie_cast">
+                    <div className="movie_cast flex flex-col">
                         <h2 className="casttitle" >Cast & Crew</h2>
                         {Cast &&
                             Cast.cast &&
@@ -65,7 +65,7 @@ const ShowCastMovie = () => {
                                         <div className="cast_image_div">
 
                                             <img
-                                                className="new_image rounded-lg w-28 my-6 "
+                                                className="new_image rounded-lg lg:w-40 w-20 lg:m-6 m-3 "
                                                 src={
                                                     "https://image.tmdb.org/t/p/original" +
                                                     hero.profile_path
