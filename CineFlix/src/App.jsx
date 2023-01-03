@@ -24,7 +24,6 @@ function App() {
     <Menu/>
             <Routes>
               {/* For Movies */}
-              
                 <Route path="/" element = {<Home/>}></Route>
                 <Route path="/movies/search" element={<SearchMovie/>}></Route>
                 <Route path="/movies/:type" element={<MovieList />}></Route>
