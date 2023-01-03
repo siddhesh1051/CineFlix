@@ -55,7 +55,7 @@ const ShowCastTv = () => {
 
             <div className="movie__detail">
 
-                <div className="cast_div">
+                <div className="cast_div_show_more">
 
                     <div className="movie_cast flex flex-col">
                         <h2 className="casttitle" >Cast & Crew</h2>

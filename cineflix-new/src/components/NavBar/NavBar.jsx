@@ -35,7 +35,7 @@ function NavBar() {
             Library
           </h1>
           <NavLink to="/watch_later"><p className="Popular px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiBookmark/><span className='ml-3'>Watch Later</span></p></NavLink>
-          <NavLink to="/favourite"><p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiHeart/><span className='ml-3'>My Favourites</span></p></NavLink>
+          <NavLink to="/favourites"><p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiHeart/><span className='ml-3'>My Favourites</span></p></NavLink>
         </div>
         <Link to="/"><div className="logout">
         <p className="Top Rated  px-2 mx-5 py-2 my-1 flex items-center bg-[#4e4e4f] rounded-lg mt-8 cursor-pointer"><FiLogOut/><span className='ml-3'>Log Out</span></p>

@@ -28,7 +28,7 @@ const Home = () => {
                 <Carousel
                     showThumbs={false}
                     autoPlay={true}
-                    interval={4000}
+                    interval={3500}
                     infiniteLoop={true}
                     swipeable={true}
                     stopOnHover={true}

@@ -31,6 +31,7 @@ function App() {
                 <Route path="/movie/:id" element = {< MovieDetail/>}></Route>
                 <Route path="/movie/:id/similar" element = {< ShowSimilarMovie/>}></Route>
                 <Route path="/movie/:id/credits" element = {< ShowCastMovie/>}></Route>
+                
 
               {/* For Tv */}
               <Route path="/tvs/:type" element={<TvList/>}></Route>

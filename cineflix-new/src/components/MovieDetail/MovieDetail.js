@@ -6,6 +6,7 @@ import axios from "axios";
 import { HashLoader } from "react-spinners";
 
 
+
 const MovieDetail = () => {
     const [currentMovieDetail, setMovie] = useState();
     const [Cast, setCast] = useState();
@@ -13,6 +14,7 @@ const MovieDetail = () => {
     const [Videos, setVideos] = useState();
     const [Loading, setLoading] = useState(true)
     const { id } = useParams();
+
 
 
     // Initial Useeffect
@@ -84,6 +86,7 @@ const MovieDetail = () => {
 
 
         <div className="movie">
+
             <div className="movie__intro">
                 <img
                     className="movie__backdrop"
@@ -93,6 +96,7 @@ const MovieDetail = () => {
                 />
                 <div className="img_overlay"></div>
             </div>
+
             <div className="movie__detail">
                 <div className="movie__detailLeft">
                     <div className="movie__posterBox">
@@ -115,11 +119,14 @@ const MovieDetail = () => {
                             <div className="date">{currentMovieDetail ? currentMovieDetail.release_date : ""}</div>
                         </div>
 
+                    <div className="showcast">
+                    <Link to={`/movie/${id}/credits`} className="show_more lg:invisible visible ">Show Cast<i class="fa fa-arrow-right"></i></Link>           
+
+                    </div>
                     </div>
 
 
                 </div>
-
                 <div className="movie__detailRight">
                     <div className="movie__detailRightTop">
                         <div className="movie__name">
@@ -206,6 +213,7 @@ const MovieDetail = () => {
                 </div>
 
 
+
                 <div className="cast_div">
 
                     <div className="movie_cast">
@@ -249,9 +257,10 @@ const MovieDetail = () => {
 
                         <h3 className="sim">Similar</h3>
                     </div>
+                    
                     {Similar &&
                         Similar.results &&
-                        Similar.results.slice(0, 6).map((hero) => (
+                        Similar.results.slice(0, 5).map((hero) => (
                             <>
                                 {hero.poster_path && (
                                     <div className="cards">
@@ -264,6 +273,8 @@ const MovieDetail = () => {
                                             }
                                             alt=""
                                         />
+
+                                        
                                         <Link to={`/movie/${hero.id}?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`} target='_blank' style={{ textDecoration: "none", color: "white" }}>
                                             <div className="cards__overlay">
                                                 <div className="cast_details">
@@ -282,9 +293,9 @@ const MovieDetail = () => {
                         ))}
 
                     <Link to={`/movie/${id}/similar`} className="show_more">Show More<i class="fa fa-arrow-right"></i></Link>
+                    
                 </div>
             </div>
-
 
         </div>
 }
@@ -293,74 +304,3 @@ const MovieDetail = () => {
 };
 
 export default MovieDetail;
-
-{
-    /* <div className="movie__rating">
-                                  {currentMovieDetail ? currentMovieDetail.vote_average : ""} <i class="fas fa-star" />
-                                  <span className="movie__voteCount">{currentMovieDetail ? "(" + currentMovieDetail.vote_count + ") votes" : ""}</span>
-                                  </div>
-                                  <div className="movie__runtime">{currentMovieDetail ? currentMovieDetail.runtime + " mins" : ""}</div>
-                              <div className="movie__releaseDate">{currentMovieDetail ? "Release date: " + currentMovieDetail.release_date : ""}</div>
-                                      <div className="movie__genres">
-                              {
-                                      currentMovieDetail && currentMovieDetail.genres
-                                          ?
-                                          currentMovieDetail.genres.map(genre => (
-                                              <><span className="movie__genre" id={genre.id}>{genre.name}</span></>
-                                          ))
-                                          :
-                                          ""
-                                      }
-                                      </div> */
-}
-
-{
-    /* <div className="movie__heading">Production companies</div> */
-    /* <div className="movie__production">
-                      {
-                          currentMovieDetail && currentMovieDetail.production_companies && currentMovieDetail.production_companies.map(company => (
-                              <>
-                                  {
-                                      company.logo_path 
-                                      && 
-                                      <span className="productionCompanyImage">
-                                          <img className="movie__productionComapany" src={"https://image.tmdb.org/t/p/original" + company.logo_path} />
-                                          <span>{company.name}</span>
-                                      </span>
-                                  }
-                              </>
-                          ))
-                      }
-                  </div> */
-}
-{
-    /* <div className="movie__links">
-      <div className="movie__heading">Useful Links</div>
-      {currentMovieDetail && currentMovieDetail.homepage && (
-        <a
-          href={currentMovieDetail.homepage}
-          target="_blank"
-          style={{ textDecoration: "none" }}
-        >
-          <p>
-            <span className="movie__homeButton movie__Button">
-              Homepage <i className="newTab fas fa-external-link-alt"></i>
-            </span>
-          </p>
-        </a>
-      )}
-      {currentMovieDetail && currentMovieDetail.imdb_id && (
-        <a
-          href={"https://www.imdb.com/title/" + currentMovieDetail.imdb_id}
-          target="_blank"
-          style={{ textDecoration: "none" }}
-        >
-          <p>
-            <span className="movie__imdbButton movie__Button">
-              IMDb<i className="newTab fas fa-external-link-alt"></i>
-            </span>
-          </p>
-        </a>
-      )}
-    </div> */
-}

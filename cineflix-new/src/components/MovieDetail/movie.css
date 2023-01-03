@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
- 
+
 }
 
 .movie__intro {
@@ -39,7 +39,7 @@
 }
 
 .movie__detailLeft {
-  margin-right: 30px;
+  margin-right: 0px;
   position: relative;
 }
 
@@ -158,7 +158,7 @@
 
 .details{
     max-width: 100%;
-    margin-top: 5rem;
+    margin-top: 6rem;
     font-family: 'Poppins',sans-serif;
 }
 h2{
@@ -181,6 +181,7 @@ h2{
     display: inline;
     margin-left: 21%;
     white-space: pre-line;
+   
     
     
 }
@@ -247,6 +248,7 @@ hr{
 .cast_div{
   display: inline-flex;
   margin-top: 6rem;
+  width: fit-content;
   
  
 }
@@ -255,7 +257,7 @@ hr{
   font-weight: 500;
   font-family: 'Poppins', sans-serif;
   display: block;
-  width: 300px;
+  max-width: 150px;
   
   
   
@@ -274,6 +276,12 @@ hr{
 .cast_details{
   margin-top: 1.4rem;
   margin-left: 0.6rem;
+}
+
+.cast_div_show_more{
+  display: inline-flex;
+  margin-top: 6rem;
+  width: fit-content;
 }
 
 .show_more{
@@ -296,15 +304,17 @@ hr{
 }
 
 .similar{
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
   font-family: 'Poppins', sans-serif;
-  position: relative;
-  margin-top: 6rem;
+  position: absolute;
+  margin-top: 8rem;
+  
   
 }
+
 .back__similar{
   position: absolute;
   top: -3rem;
@@ -313,7 +323,7 @@ hr{
 }
 .similar_title{
   float: left;
-  width: 100%;
+  width: 90%;
   margin-left: 1rem;
   font-size: 2.5rem;
   margin-bottom: 2rem;
@@ -333,7 +343,6 @@ hr{
   border-radius: 50%;
   padding: 1rem 1.4rem 1rem 1.4rem;
   background-color: transparent;
-  
   border: 0.4rem solid #ff505b;
   border-left: transparent;
   border-top: transparent;
@@ -378,4 +387,149 @@ hr{
 
 .homepage_btn:hover{
   background-color: #838d8f;
+}
+
+@media screen and (max-width: 1040px) {
+
+
+  .movie__backdrop {
+    height:fit-content !important;
+   
+    object-fit:cover !important;
+    object-position: 0 35%;
+  }
+  .img_overlay {
+    height: 200px!important;
+    position: absolute!important;
+    background-image: linear-gradient(transparent, rgb(0, 0, 0,0.9))!important;
+    margin-top: -200px!important;
+  }
+  .movie__poster  {
+    width: 200px !important;     
+
+  } 
+
+  .movie__name {
+    font-weight: 400!important;
+    font-size: 2rem!important;
+    
+  }
+  
+  .movie__tagline {
+    font-size: 1rem!important;
+    
+  }
+  .movie__detail {
+  
+    width: 100%!important;
+    display: flex!important;
+    flex-direction: column!important;
+    margin-left: 2%!important;
+    
+  }
+  
+  .movie__detailLeft {
+    
+    display: flex!important;
+
+    
+  }
+  
+  .movie__detailRight {
+    
+    display: flex!important;
+    flex-direction: column!important;
+    
+    
+  }
+  .overviewDiv {
+    margin-top: 3rem!important;
+    max-width: 99%!important;
+   
+    
+  }
+  
+
+  .movie_rating{
+    margin: 7rem 0rem 0rem 1rem !important;
+    
+  }
+  
+  .rating{
+    
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem!important;
+    border: 0.3rem solid #ff505b!important;
+    border-left: transparent!important;
+    border-top: transparent!important;
+    font-size: 1.4rem!important;
+    
+    
+    
+  }
+  .movie_rating{
+    width: 153px!important;
+  }
+  .movie_voteCount{
+    
+    margin-left: 4rem!important;
+    
+    margin-top: -2.5rem!important;
+    
+  }
+  
+  .movie_date{
+    
+    margin-left: 0.5rem!important;
+    margin-top: 1rem!important;
+  
+  }
+  .trailerbtn {
+    
+    font-size: 1rem!important;
+    margin-right: 0px !important;
+    padding: 15px 20px 20px 15px!important; 
+  }
+  
+  
+  .bookmarkbtn {
+    font-size: 1.2rem!important;
+    margin-left: 0.4rem!important;
+  }
+  
+  .sharebtn {
+    font-size: 1.2rem!important;
+    margin-left: 0.5rem!important;
+  }
+  .details{
+    max-width: 90%!important;
+    margin-top: 5rem!important;
+   
+}
+
+
+.cast_div{
+  display: none!important;
+  
+  
+ 
+}
+.similar{
+  margin-top: 20rem!important;
+}
+.similar_title{
+ 
+  width: 70%!important;
+  
+}
+
+.similar_row{
+  display: flex!important;
+  flex-direction: column!important;
+
+}
+.show_more{
+  margin-left: 0.5rem!important;
+ 
+}
+
 }

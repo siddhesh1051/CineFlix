@@ -72,6 +72,7 @@ const MovieList = () => {
                         <button onClick={handleNextClick} className="disabled:hidden m-4">Next<i class="fa fa-arrow-right ml-3"></i></button>
 
                     </div>
+                    
                 </>
             }
 

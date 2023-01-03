@@ -79,7 +79,7 @@ const SearchMovie = () => {
                         ))}
                     </div>
                         <div className="btn__div text-center m-4 p-4 text-[#ff505b] text-xl">
-                            <button onClick={handlePreviousClick} disabled={!searchText ? "true" : ""} className="disabled:hidden m-4"><i class="fa fa-arrow-left mr-3"></i>Previous</button>
+                            <button onClick={handlePreviousClick} disabled={!searchText || Page === 1 ? "true" : ""} className="disabled:hidden m-4"><i class="fa fa-arrow-left mr-3"></i>Previous</button>
                             <button onClick={handleNextClick} disabled={!searchText ? "true" : ""} className="disabled:hidden m-4">Next<i class="fa fa-arrow-right ml-3"></i></button>
 
                         </div>
