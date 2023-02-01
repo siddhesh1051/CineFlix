@@ -14,6 +14,8 @@ import ShowCastTv from './components/ShowMore/ShowCastTv';
 import SearchMovie from './components/Search/SearchMovie';
 import SearchTv from './components/Search/SearchTv';
 import Menu from './components/Menu';
+// import Signup from './components/Authentication/NewAuth/Register';
+// import Login from './components/Authentication/NewAuth/Login';
 import Signup from './components/Authentication/Signup/Signup';
 import Login from './components/Authentication/Login/Login';
 
@@ -21,14 +23,21 @@ import Login from './components/Authentication/Login/Login';
 
 
 function App() {
+
+
   return (
     <div className="flex lg:gap-[1.5rem] ">
     <Router> 
+
+      
     <NavBar/>
-    <Menu/>
+    <Menu/> 
             <Routes>
+
+              
+
               {/* For Movies */}
-                <Route path="/" element = {<Home/>}></Route>
+                <Route exact path="/" element = {<Home/>}></Route>
                 <Route path="/movies/search" element={<SearchMovie/>}></Route>
                 <Route path="/movies/:type" element={<MovieList />}></Route>
                 <Route path="/movie/:id" element = {< MovieDetail/>}></Route>
@@ -42,11 +51,11 @@ function App() {
               <Route path="/tv/:id" element = {<TvDetail/>}></Route>
               <Route path="/tv/:id/similar" element = {< ShowSimilarTv/>}></Route>
               <Route path="/tv/:id/credits" element = {< ShowCastTv/>}></Route>
-              <Route path="/tv/:id/credits" element = {< ShowCastTv/>}></Route>
              
+              
             {/* Other Routes */}
             <Route path="/login" element = {<Login/>}></Route>
-            <Route path="/signup" element = {< Signup/>}></Route>
+            <Route path="/signup"element = {< Signup/>}></Route>
 
 
             </Routes>

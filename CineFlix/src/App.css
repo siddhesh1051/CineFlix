@@ -24,7 +24,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #2c2c2c; 
 }
-
+/* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -57,7 +57,7 @@
   background-color: #262627;
 }
 .popular:active{
-  color: aqua;
+  color: rgb(0, 0, 0);
 }
 
 @keyframes App-logo-spin {
@@ -67,4 +67,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
