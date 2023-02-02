@@ -1,5 +1,5 @@
 import React from 'react'
-// import './login.css'
+import '../login.css'
 import 'material-symbols';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';

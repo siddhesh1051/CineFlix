@@ -1,5 +1,6 @@
 import './App.css';
 import "react-loading-skeleton/dist/skeleton.css";
+import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import NavBar from './components/NavBar/NavBar';
 import MovieDetail from './components/MovieDetail/MovieDetail';
@@ -14,8 +15,10 @@ import ShowCastTv from './components/ShowMore/ShowCastTv';
 import SearchMovie from './components/Search/SearchMovie';
 import SearchTv from './components/Search/SearchTv';
 import Menu from './components/Menu';
-import Signup from './components/Authentication/Signup/Signup';
-import Login from './components/Authentication/Login/Login';
+import Signup from './components/Authentication/Register';
+import Login from './components/Authentication/Login';
+// import Signup from './components/Authentication/Signup/Signup';
+// import Login from './components/Authentication/Login/Login';
 
 
 

@@ -1,5 +1,5 @@
 import React from 'react'
-// import './signup.css'
+import '../signup.css'
 // import Avatar from './avatar.png'
 import 'material-symbols';
 import { useState } from 'react';
