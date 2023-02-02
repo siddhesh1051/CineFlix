@@ -32,7 +32,6 @@ function App() {
 
   const navigate = useNavigate();
   const [cookies, setCookie, removeCookie] = useCookies([]);
-  const [isNav, setisNav] = useState(false)
   const [username, setusername] = useState("")
   useEffect(() => {
     const verifyUser = async () => {
@@ -40,7 +39,7 @@ function App() {
         navigate("/login");
         
       } else {
-        setisNav(!isNav)
+        
         const { data } = await axios.post(
           "http://localhost:4000",
           {},
@@ -49,13 +48,15 @@ function App() {
           }
         );
         
+        
         if (!data.status) {
           removeCookie("jwt");
           navigate("/login");
         } else
-        toast(`Hi ${data.user} 🦄`, {
-          theme: "dark",
-        });
+        // toast(`Hi ${data.user} 🦄`, {
+        //   theme: "dark",
+        // });
+        setusername(data.user)
       }
       
     };
