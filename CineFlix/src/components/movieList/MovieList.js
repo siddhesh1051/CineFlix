@@ -63,13 +63,14 @@ const MovieList = () => {
                 :
                 <>
                     <div className="list__cards">
-                        {movieList.map(movie => (
-                            <Cards movie={movie} />
+                        {movieList.map(movie  => (
+                            
+                            <Cards key={movie.id} movie={movie}/>
                         ))}
                     </div>
                     <div className="btn__div text-center m-4 p-4 text-[#ff505b] text-xl">
-                        <button onClick={handlePreviousClick} disabled={Page === 1 ? "true" : ""} className="disabled:hidden m-4"><i class="fa fa-arrow-left mr-3"></i>Previous</button>
-                        <button onClick={handleNextClick} className="disabled:hidden m-4">Next<i class="fa fa-arrow-right ml-3"></i></button>
+                        <button onClick={handlePreviousClick} disabled={Page === 1 ? true : ""} className="disabled:hidden m-4"><i className="fa fa-arrow-left mr-3"></i>Previous</button>
+                        <button onClick={handleNextClick} className="disabled:hidden m-4">Next<i className="fa fa-arrow-right ml-3"></i></button>
 
                     </div>
                     

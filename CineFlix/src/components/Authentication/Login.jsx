@@ -42,6 +42,7 @@ function Login() {
     } catch (ex) {
       console.log(ex);
     }
+    window.location.reload();
   };
   return (
 

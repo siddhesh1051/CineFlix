@@ -1,6 +1,11 @@
 import './App.css';
 import "react-loading-skeleton/dist/skeleton.css";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect ,useState} from "react";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from "axios";
+import { toast } from "react-toastify";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import NavBar from './components/NavBar/NavBar';
 import MovieDetail from './components/MovieDetail/MovieDetail';
@@ -25,14 +30,55 @@ import Login from './components/Authentication/Login';
 
 function App() {
 
+  const navigate = useNavigate();
+  const [cookies, setCookie, removeCookie] = useCookies([]);
+  const [isNav, setisNav] = useState(false)
+  const [username, setusername] = useState("")
+  useEffect(() => {
+    const verifyUser = async () => {
+      if (!cookies.jwt) {
+        navigate("/login");
+        
+      } else {
+        setisNav(!isNav)
+        const { data } = await axios.post(
+          "http://localhost:4000",
+          {},
+          {
+            withCredentials: true,
+          }
+        );
+        
+        if (!data.status) {
+          removeCookie("jwt");
+          navigate("/login");
+        } else
+        toast(`Hi ${data.user} 🦄`, {
+          theme: "dark",
+        });
+      }
+      
+    };
+    verifyUser();
+  }, [cookies, removeCookie]);
+
+  
+
+  // const logOut = () => {
+  //   removeCookie("jwt");
+  //   navigate("/login");
+  // };
+
 
   return (
     <div className="flex lg:gap-[1.5rem] ">
-    <Router> 
+    {/* <Router>  */}
 
-      
-    <NavBar/>
-    <Menu/> 
+  
+ 
+    {/* {cookies.jwt &&<NavBar />} */}
+    {cookies.jwt?<NavBar cookies={cookies} removeCookie={removeCookie} username={username}/>:null}
+    {cookies.jwt?<Menu cookies={cookies} removeCookie={removeCookie}/>:null} 
             <Routes>
 
               
@@ -60,7 +106,7 @@ function App() {
 
 
             </Routes>
-        </Router>
+        {/* </Router> */}
     
     
     </div>
