@@ -88,7 +88,7 @@ function App() {
                 <Route exact path="/" element = {<Home/>}></Route>
                 <Route path="/movies/search" element={<SearchMovie/>}></Route>
                 <Route path="/movies/:type" element={<MovieList />}></Route>
-                <Route path="/movie/:id" element = {< MovieDetail/>}></Route>
+                <Route path="/movie/:id" element = {< MovieDetail userFrom={cookies.jwt}/>}></Route>
                 <Route path="/movie/:id/similar" element = {< ShowSimilarMovie/>}></Route>
                 <Route path="/movie/:id/credits" element = {< ShowCastMovie/>}></Route>
                 

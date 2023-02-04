@@ -4,17 +4,21 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
+import Favorite from "../../Favorite/Favorite";
 
 
 
-const MovieDetail = () => {
+const MovieDetail = (props) => {
     const [currentMovieDetail, setMovie] = useState();
     const [Cast, setCast] = useState();
     const [Similar, setSimilar] = useState();
     const [Videos, setVideos] = useState();
     const [Loading, setLoading] = useState(true)
     const { id } = useParams();
+    const [userFrom, setuserFrom] = useState()
 
+
+    // setuserFrom(props.userFrom)
 
 
     // Initial Useeffect
@@ -120,7 +124,7 @@ const MovieDetail = () => {
                         </div>
 
                     <div className="showcast">
-                    <Link to={`/movie/${id}/credits`} className="show_more lg:invisible visible ">Show Cast<i class="fa fa-arrow-right"></i></Link>           
+                    <Link to={`/movie/${id}/credits`} className="show_more lg:invisible visible ">Show Cast<i className="fa fa-arrow-right"></i></Link>           
 
                     </div>
                     </div>
@@ -143,17 +147,17 @@ const MovieDetail = () => {
                                 Videos.results.slice(0, 1).map((hero) => (
                                     <>
                                         {hero.key && (
-                                            <div className="trailer&btn">
+                                            <div key={hero.id} className="trailer&btn">
 
                                                 <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
-                                                    Watch Trailer<i class="fa fa-play"></i>
+                                                    Watch Trailer<i className="fa fa-play"></i>
                                                 </a>
                                                 <button className="bookmarkbtn">
-                                                    <i class="fa fa-bookmark"></i>
+                                                    <i className="fa fa-bookmark"></i>
                                                 </button>
 
                                                 <button className="sharebtn">
-                                                    <i class="fa fa-heart"></i>
+                                                    <i className="fa fa-heart"></i>
                                                 </button>
                                             </div>
                                         )}
@@ -163,6 +167,8 @@ const MovieDetail = () => {
 
                         </div>
 
+{/* kmf
+dmsfds/ */}
 
 
                         <div className="overviewDiv">
@@ -180,7 +186,7 @@ const MovieDetail = () => {
                                 {currentMovieDetail && currentMovieDetail.genres
                                     ? currentMovieDetail.genres.slice(0, 2).map((genre) => (
                                         <>
-                                            <span className="movie__genre" id={genre.id}>
+                                            <span key={genre.id} className="movie__genre" id={genre.id}>
                                                 {genre.name}
                                             </span>
                                         </>
@@ -223,7 +229,7 @@ const MovieDetail = () => {
                             Cast.cast.slice(0, 4).map((hero) => (
                                 <>
                                     {hero.profile_path && (
-                                        <div className="cast_image_div">
+                                        <div key={hero.id} className="cast_image_div">
 
                                             <img
                                                 className="cast_image"
@@ -245,7 +251,7 @@ const MovieDetail = () => {
                                 </>
                             ))}
 
-                        <Link to={`/movie/${id}/credits`} className="show_more">Show More<i class="fa fa-arrow-right"></i></Link>           
+                        <Link to={`/movie/${id}/credits`} className="show_more">Show More<i className="fa fa-arrow-right"></i></Link>           
                     </div>
                 </div>
             </div>
@@ -263,7 +269,7 @@ const MovieDetail = () => {
                         Similar.results.slice(0, 5).map((hero) => (
                             <>
                                 {hero.poster_path && (
-                                    <div className="cards">
+                                    <div key={hero.id} className="cards">
 
                                         <img
                                             className="cards__img"
@@ -292,13 +298,14 @@ const MovieDetail = () => {
                             </>
                         ))}
 
-                    <Link to={`/movie/${id}/similar`} className="show_more">Show More<i class="fa fa-arrow-right"></i></Link>
+                    <Link to={`/movie/${id}/similar`} className="show_more">Show More<i className="fa fa-arrow-right"></i></Link>
                     
                 </div>
             </div>
 
         </div>
 }
+{/* <Favorite userFrom={userFrom} movieId={id} currentMovieDetail={currentMovieDetail} /> */}
         </>
     );
 };

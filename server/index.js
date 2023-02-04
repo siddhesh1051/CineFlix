@@ -23,7 +23,7 @@ mongoose
     console.log("DB Connetion Successfull");
   })
   .catch((err) => {
-    console.log(err.message);
+    console.log("error");
   });
 
 app.use(
@@ -37,3 +37,5 @@ app.use(cookieParser());
 
 app.use(express.json());
 app.use("/", authRoutes);
+// app.use("/favorite",  require('./routes/favorite'));
+
