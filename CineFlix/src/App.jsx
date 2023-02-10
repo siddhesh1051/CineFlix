@@ -88,7 +88,7 @@ function App() {
                 <Route exact path="/" element = {<Home/>}></Route>
                 <Route path="/movies/search" element={<SearchMovie/>}></Route>
                 <Route path="/movies/:type" element={<MovieList />}></Route>
-                <Route path="/movie/:id" element = {< MovieDetail userFrom={cookies.jwt}/>}></Route>
+                <Route path="/movie/:id" element = {< MovieDetail userFrom={cookies.jwt} currEmail={username}/>}></Route>
                 <Route path="/movie/:id/similar" element = {< ShowSimilarMovie/>}></Route>
                 <Route path="/movie/:id/credits" element = {< ShowCastMovie/>}></Route>
                 
@@ -99,7 +99,7 @@ function App() {
               <Route path="/tv/:id" element = {<TvDetail/>}></Route>
               <Route path="/tv/:id/similar" element = {< ShowSimilarTv/>}></Route>
               <Route path="/tv/:id/credits" element = {< ShowCastTv/>}></Route>
-              <Route path="/tv/:id/credits" element = {< ShowCastTv/>}></Route>
+              {/* <Route path="/tv/:id/credits" element = {< ShowCastTv/>}></Route> */}
              
             {/* Other Routes */}
             <Route path="/login" element = {<Login/>}></Route>

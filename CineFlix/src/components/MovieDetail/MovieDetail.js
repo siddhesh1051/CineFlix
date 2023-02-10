@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
-import Favorite from "../../Favorite/Favorite";
 
 
 
@@ -13,10 +12,12 @@ const MovieDetail = (props) => {
     const [Cast, setCast] = useState();
     const [Similar, setSimilar] = useState();
     const [Videos, setVideos] = useState();
+    const [isActive, setIsActive] = useState(false);
     const [Loading, setLoading] = useState(true)
     const { id } = useParams();
-    const [userFrom, setuserFrom] = useState()
 
+    // const [userFrom, setuserFrom] = useState('');
+    
 
     // setuserFrom(props.userFrom)
 
@@ -26,6 +27,35 @@ const MovieDetail = (props) => {
         getData();
 
     }, []);
+    const addToList = async () => {
+        try {
+            const email = props.currEmail;
+            console.log(email);
+          await axios.post("http://localhost:4000/addFav", {
+            email,
+            data: currentMovieDetail,
+          });
+          setIsActive(!isActive);
+          
+        } catch (error) {
+            console.log(error);
+        }
+      };
+    const removeFromList = async () => {
+        try {
+            const email = props.currEmail;
+            console.log(email + " removing");
+          await axios.post("http://localhost:4000/removeFav", {
+            email,
+            movieID: currentMovieDetail.id,
+          });
+          setIsActive(!isActive);
+          
+          
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const getData = async () => {
         const res = await axios.get(
@@ -152,13 +182,17 @@ const MovieDetail = (props) => {
                                                 <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
                                                     Watch Trailer<i className="fa fa-play"></i>
                                                 </a>
-                                                <button className="bookmarkbtn">
+                                                <button className="bookmarkbtn" >
                                                     <i className="fa fa-bookmark"></i>
                                                 </button>
 
-                                                <button className="sharebtn">
-                                                    <i className="fa fa-heart"></i>
-                                                </button>
+                                                {!isActive
+                                                ?<button className='sharebtn' onClick={addToList}>
+                                                <i className="fa fa-heart"></i>
+                                            </button>
+                                                :<button className='sharebtn_clicked' onClick={removeFromList}>
+                                                <i className="fa fa-heart"></i>
+                                            </button>}
                                             </div>
                                         )}
                                     </>

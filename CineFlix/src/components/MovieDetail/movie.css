@@ -136,6 +136,32 @@
   transition-duration: 0.5s;
 }
 
+.sharebtn_clicked{
+  width: fit-content;
+  border-radius: 50%;
+  padding: 0.9rem 1.3rem 0.9rem 1.3rem;
+  cursor: pointer;
+  border: 0.2rem solid #ffffff;
+  color: #e63844;
+  background-color: white;
+  font-size: 1.5rem;
+  margin-left: 1.3rem;
+  transition-duration: 0.5s;
+}
+.bookmarkbtn_clicked{
+  width: fit-content;
+  border-radius: 50%;
+  padding: 0.9rem 1.3rem 0.9rem 1.3rem;
+  cursor: pointer;
+  border: 0.2rem solid #ffffff;
+  color: #0e4acb;
+  background-color: white;
+  font-size: 1.5rem;
+  margin-left: 1.3rem;
+  transition-duration: 0.5s;
+}
+
+
 .bookmarkbtn:hover {
   color: black;
   background-color: white;
