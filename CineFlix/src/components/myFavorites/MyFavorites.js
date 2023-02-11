@@ -1,9 +1,8 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import './myFavorites.css';
 import { useNavigate } from "react-router-dom";
 import { getUsersLikedMovies } from "../../store";
-import Cards from "../card/Card";
+import FavCards from "../card/FavCard";
 import { useDispatch, useSelector } from "react-redux";
 
 function MyFavorites(props) {
@@ -32,7 +31,7 @@ function MyFavorites(props) {
 
                 {movies.map(movie => (
 
-                    <Cards key={movie.id} movie={movie} />
+                    <FavCards key={movie.id} movie={movie} currEmail={email} type={movie}/>
                 ))}
             </div>
         </div>

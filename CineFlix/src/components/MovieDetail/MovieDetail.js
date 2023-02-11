@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
+import { removeMovieFromLiked } from "../../store";
+import { useDispatch } from 'react-redux';
+
 
 
 
@@ -15,6 +18,10 @@ const MovieDetail = (props) => {
     const [isActive, setIsActive] = useState(false);
     const [Loading, setLoading] = useState(true)
     const { id } = useParams();
+    const dispatch = useDispatch();
+
+    const email = props.currEmail;
+
 
     // const [userFrom, setuserFrom] = useState('');
     
@@ -29,7 +36,6 @@ const MovieDetail = (props) => {
     }, []);
     const addToList = async () => {
         try {
-            const email = props.currEmail;
             console.log(email);
           await axios.post("http://localhost:4000/addFav", {
             email,
@@ -41,21 +47,21 @@ const MovieDetail = (props) => {
             console.log(error);
         }
       };
-    const removeFromList = async () => {
-        try {
-            const email = props.currEmail;
-            console.log(email + " removing");
-          await axios.post("http://localhost:4000/removeFav", {
-            email,
-            movieID: currentMovieDetail.id,
-          });
-          setIsActive(!isActive);
+    // const removeFromList = async () => {
+    //     try {
+    //         const email = props.currEmail;
+    //         console.log(email + " removing");
+    //       await axios.post("http://localhost:4000/removeFav", {
+    //         email,
+    //         movieID: currentMovieDetail.id,
+    //       });
+    //       setIsActive(!isActive);
           
           
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // };
 
     const getData = async () => {
         const res = await axios.get(
@@ -190,7 +196,14 @@ const MovieDetail = (props) => {
                                                 ?<button className='sharebtn' onClick={addToList}>
                                                 <i className="fa fa-heart"></i>
                                             </button>
-                                                :<button className='sharebtn_clicked' onClick={removeFromList}>
+                                                :<button className='sharebtn_clicked' onClick={() =>
+                                                    dispatch(
+                                                      removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
+                                                      
+                                                    )
+                                                        && setIsActive(!isActive)
+                                                    
+                                                  }>
                                                 <i className="fa fa-heart"></i>
                                             </button>}
                                             </div>

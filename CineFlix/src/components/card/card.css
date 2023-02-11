@@ -61,3 +61,15 @@
     font-size: .75rem;
     margin-bottom: 0.25rem;
 }
+.removeBtn {
+    color: red;
+    z-index: 1000;
+    position: absolute;
+    top: -0.8rem;
+    right: -0.2rem;
+    padding: 0rem 0.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: 0.2s;
+    background-color: transparent;
+}

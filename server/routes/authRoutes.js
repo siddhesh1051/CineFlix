@@ -8,5 +8,6 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/addFav", addFav);
 router.post("/removeFav", removeFromLikedMovies);
+router.put("/removeFav", removeFromLikedMovies);
 router.get("/liked/:email", getLikedMovies);
 module.exports = router;

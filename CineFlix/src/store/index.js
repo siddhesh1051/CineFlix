@@ -27,7 +27,7 @@ import {
     async ({ movieId, email }) => {
       const {
         data: { movies },
-      } = await axios.put("http://localhost:5000/api/user/remove", {
+      } = await axios.put("http://localhost:4000/removeFav", {
         email,
         movieId,
       });
