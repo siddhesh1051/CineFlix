@@ -22,6 +22,7 @@ import SearchTv from './components/Search/SearchTv';
 import Menu from './components/Menu';
 import Signup from './components/Authentication/Register';
 import Login from './components/Authentication/Login';
+import MyFavorites from './components/myFavorites/MyFavorites';
 // import Signup from './components/Authentication/Signup/Signup';
 // import Login from './components/Authentication/Login/Login';
 
@@ -91,6 +92,7 @@ function App() {
                 <Route path="/movie/:id" element = {< MovieDetail userFrom={cookies.jwt} currEmail={username}/>}></Route>
                 <Route path="/movie/:id/similar" element = {< ShowSimilarMovie/>}></Route>
                 <Route path="/movie/:id/credits" element = {< ShowCastMovie/>}></Route>
+                <Route path="/favorites" element = {< MyFavorites currEmail={username}/>}></Route>
                 
 
               {/* For Tv */}

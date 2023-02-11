@@ -102,7 +102,7 @@ module.exports.removeFromLikedMovies = async (req, res) => {
       const movies = user.fav;
       // console.log(movies);
       const movieIndex = movies.findIndex(movie => movie.id === movieId);
-      console.log(movieIndex);
+      // console.log(movieIndex);
       if (!movieIndex) {
         res.status(400).send({ msg: "Movie not found." });
       }
