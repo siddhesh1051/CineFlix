@@ -7,6 +7,7 @@ import {
   
   const initialState = {
     movies: [],
+    watchLater: [],
     
   };
 
@@ -34,6 +35,30 @@ import {
       return movies;
     }
   );
+
+  //Watch Later
+  export const getWatchLaterMovies = createAsyncThunk(
+    "netflix/getLiked",
+    async (email) => {
+      const {
+        data: { movies },
+      } = await axios.get(`http://localhost:4000/watch/${email}`);
+      return movies;
+    }
+  );
+  
+  export const removeWatchLaterMovie = createAsyncThunk(
+    "netflix/deleteLiked",
+    async ({ movieId, email }) => {
+      const {
+        data: { movies },
+      } = await axios.put("http://localhost:4000/removeFav", {
+        email,
+        movieId,
+      });
+      return movies;
+    }
+  );
   
   const NetflixSlice = createSlice({
     name: "Netflix",
@@ -46,6 +71,12 @@ import {
       builder.addCase(removeMovieFromLiked.fulfilled, (state, action) => {
         state.movies = action.payload;
       });
+      builder.addCase(getWatchLaterMovies.fulfilled, (state, action) => {
+        state.watchLater = action.payload;
+      });
+      builder.addCase(removeWatchLaterMovie.fulfilled, (state, action) => {
+        state.watchLater = action.payload;
+      });
     },
   });
   
@@ -55,4 +86,4 @@ import {
     },
   });
   
-  export const { setGenres, setMovies } = NetflixSlice.actions;
+  export const { setGenres, setMovies, setWatchLater } = NetflixSlice.actions;

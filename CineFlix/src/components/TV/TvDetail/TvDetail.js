@@ -156,7 +156,7 @@ const TvDetail = (props) => {
                                 <div className="tailer_button_link">
 
                                     {Videos && Videos.results &&
-                                        Videos.results.map((hero) => (
+                                        Videos.results.slice(0,1).map((hero) => (
                                             <>
                                                 {(
                                                     <div className="trailer&btn">
@@ -333,7 +333,7 @@ const TvDetail = (props) => {
                             </div>
                             {Similar &&
                                 Similar.results &&
-                                Similar.results.slice(0, 7).map((hero) => (
+                                Similar.results.slice(0, 5).map((hero) => (
                                     <>
                                         {hero.poster_path && (
                                             <div className="cards">
