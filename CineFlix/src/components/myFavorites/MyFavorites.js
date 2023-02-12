@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
+
 import './myFavorites.css';
-import { useNavigate } from "react-router-dom";
 import { getUsersLikedMovies } from "../../store";
 import FavCards from "../card/FavCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,6 @@ function MyFavorites(props) {
 
     const movies = useSelector((state) => state.netflix.movies);
     const dispatch = useDispatch();
-    const navigate = useNavigate();
 
 
     const email = props.currEmail;
@@ -31,8 +30,18 @@ function MyFavorites(props) {
 
                 {movies.map(movie => (
 
-                    <FavCards key={movie.id} movie={movie} currEmail={email} type={movie}/>
+                    <>
+                    {
+                        movie.hasOwnProperty('original_title') 
+                        ? <FavCards key={movie.id} movie={movie} currEmail={email} isMovie={true} /> 
+                        : <FavCards key={movie.id} movie={movie} currEmail={email} isMovie={false} />
+                    }
+                    
+
+                    
+                    </>
                 ))}
+                
             </div>
         </div>
 

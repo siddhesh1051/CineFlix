@@ -62,14 +62,23 @@
     margin-bottom: 0.25rem;
 }
 .removeBtn {
-    color: red;
+    color: #e63844;
     z-index: 1000;
+    min-width: 200px;
     position: absolute;
-    top: -0.8rem;
-    right: -0.2rem;
-    padding: 0rem 0.5rem;
-    font-size: 2rem;
+    top: -0.7rem;
+    right: 0rem;
+    /* padding: 0.2rem 5rem; */
+    font-size: 2.5rem;
     cursor: pointer;
     transition: 0.2s;
-    background-color: transparent;
+    background-image: linear-gradient(rgb(0,0,0,1), rgb(0,0,0,0));
+
+
+}
+
+.trash-icon{
+    margin-left: 40%;
+    margin-top: 1rem;
+
 }

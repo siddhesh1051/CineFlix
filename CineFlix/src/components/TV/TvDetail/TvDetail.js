@@ -4,22 +4,43 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
+import { useDispatch } from 'react-redux';
+import { removeMovieFromLiked } from "../../../store";
 
 
-const TvDetail = () => {
+
+const TvDetail = (props) => {
     const [currentMovieDetail, setMovie] = useState();
     const [Cast, setCast] = useState();
     const [Similar, setSimilar] = useState();
+    const [isActive, setIsActive] = useState(false);
     const [Videos, setVideos] = useState();
     const [Loading, setLoading] = useState(true)
     const { id } = useParams();
+    const dispatch = useDispatch();
 
+
+
+    const email = props.currEmail;
 
     // Initial Useeffect
     useEffect(() => {
         getData();
 
     }, []);
+    const addToList = async () => {
+        try {
+            console.log(email);
+            await axios.post("http://localhost:4000/addFav", {
+                email,
+                data: currentMovieDetail,
+            });
+            setIsActive(!isActive);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const getData = async () => {
         const res = await axios.get(
@@ -114,7 +135,7 @@ const TvDetail = () => {
                                     <div className="date">{currentMovieDetail ? currentMovieDetail.first_air_date : ""}</div>
                                 </div>
                                 <div className="showcast">
-                                    <Link to={`/movie/${id}/credits`} className="show_more lg:invisible visible ">Show Cast<i class="fa fa-arrow-right"></i></Link>
+                                    <Link to={`/movie/${id}/credits`} className="show_more lg:invisible visible ">Show Cast<i className="fa fa-arrow-right"></i></Link>
 
                                 </div>
                             </div>
@@ -134,30 +155,76 @@ const TvDetail = () => {
 
                                 <div className="tailer_button_link">
 
-                                    {Videos &&
-                                        Videos.results &&
-                                        Videos.results.slice(0, 1).map((hero) => (
+                                    {Videos && Videos.results &&
+                                        Videos.results.map((hero) => (
                                             <>
-                                                {hero.key && (
+                                                {(
                                                     <div className="trailer&btn">
 
                                                         <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
-                                                            Watch Trailer<i class="fa fa-play"></i>
+                                                            Watch Trailer<i className="fa fa-play"></i>
                                                         </a>
                                                         <button className="bookmarkbtn">
-                                                            <i class="fa fa-bookmark"></i>
+                                                            <i className="fa fa-bookmark"></i>
                                                         </button>
 
-                                                        <button className="sharebtn">
-                                                            <i class="fa fa-heart"></i>
-                                                        </button>
+                                                        {!isActive
+                                                            ? <button className='sharebtn' onClick={addToList}>
+                                                                <i className="fa fa-heart"></i>
+                                                            </button>
+                                                            : <button className='sharebtn_clicked' onClick={() =>
+                                                                dispatch(
+                                                                    removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
+
+                                                                )
+                                                                && setIsActive(!isActive)
+
+                                                            }>
+                                                                <i className="fa fa-heart"></i>
+                                                            </button>}
                                                     </div>
                                                 )}
                                             </>
                                         ))}
 
 
+                                {
+                                         Videos.results.length === 0 &&(
+                                            <>
+                                                {(
+                                                    <div className="trailer&btn">
+
+                                                        
+                                                        <button className="bookmarkbtn">
+                                                            <i className="fa fa-bookmark"></i>
+                                                        </button>
+
+                                                        {!isActive
+                                                            ? <button className='sharebtn' onClick={addToList}>
+                                                                <i className="fa fa-heart"></i>
+                                                            </button>
+                                                            : <button className='sharebtn_clicked' onClick={() =>
+                                                                dispatch(
+                                                                    removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
+
+                                                                )
+                                                                && setIsActive(!isActive)
+
+                                                            }>
+                                                                <i className="fa fa-heart"></i>
+                                                            </button>}
+                                                    </div>
+                                                )}
+                                            </>
+                                        )}
+
                                 </div>
+
+
+                                        
+                                    
+
+
 
 
 
@@ -252,7 +319,7 @@ const TvDetail = () => {
                                         </>
                                     ))}
 
-                                <Link to={`/tv/${id}/credits`} className="show_more">Show More<i class="fa fa-arrow-right"></i></Link>
+                                <Link to={`/tv/${id}/credits`} className="show_more">Show More<i className="fa fa-arrow-right"></i></Link>
                             </div>
                         </div>
                     </div>
@@ -266,7 +333,7 @@ const TvDetail = () => {
                             </div>
                             {Similar &&
                                 Similar.results &&
-                                Similar.results.slice(0, 6).map((hero) => (
+                                Similar.results.slice(0, 7).map((hero) => (
                                     <>
                                         {hero.poster_path && (
                                             <div className="cards">
@@ -279,7 +346,7 @@ const TvDetail = () => {
                                                     }
                                                     alt=""
                                                 />
-                                                <Link to={`/movie/${hero.id}?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`} target='_blank' style={{ textDecoration: "none", color: "white" }}>
+                                                <Link to={`/tv/${hero.id}?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`} target='_blank' style={{ textDecoration: "none", color: "white" }}>
                                                     <div className="cards__overlay">
                                                         <div className="cast_details">
                                                             <span className="card__title">{hero.name}</span>
@@ -296,7 +363,7 @@ const TvDetail = () => {
                                     </>
                                 ))}
 
-                            <Link to={`/tv/${id}/similar`} className="show_more">Show More<i class="fa fa-arrow-right"></i></Link>                </div>
+                            <Link to={`/tv/${id}/similar`} className="show_more">Show More<i className="fa fa-arrow-right"></i></Link>                </div>
                     </div>
 
 

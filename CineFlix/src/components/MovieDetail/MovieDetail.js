@@ -23,13 +23,7 @@ const MovieDetail = (props) => {
     const email = props.currEmail;
 
 
-    // const [userFrom, setuserFrom] = useState('');
     
-
-    // setuserFrom(props.userFrom)
-
-
-    // Initial Useeffect
     useEffect(() => {
         getData();
 
@@ -206,6 +200,36 @@ const MovieDetail = (props) => {
                                                   }>
                                                 <i className="fa fa-heart"></i>
                                             </button>}
+
+                                            {
+                                         Videos.results.length === 0 &&(
+                                            <>
+                                                {(
+                                                    <div className="trailer&btn">
+
+                                                        
+                                                        <button className="bookmarkbtn">
+                                                            <i className="fa fa-bookmark"></i>
+                                                        </button>
+
+                                                        {!isActive
+                                                            ? <button className='sharebtn' onClick={addToList}>
+                                                                <i className="fa fa-heart"></i>
+                                                            </button>
+                                                            : <button className='sharebtn_clicked' onClick={() =>
+                                                                dispatch(
+                                                                    removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
+
+                                                                )
+                                                                && setIsActive(!isActive)
+
+                                                            }>
+                                                                <i className="fa fa-heart"></i>
+                                                            </button>}
+                                                    </div>
+                                                )}
+                                            </>
+                                        )}
                                             </div>
                                         )}
                                     </>

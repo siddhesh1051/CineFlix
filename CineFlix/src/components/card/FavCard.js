@@ -5,12 +5,14 @@ import "./card.css"
 import { Link } from "react-router-dom"
 import { removeMovieFromLiked } from "../../store";
 import { useDispatch } from 'react-redux';
+import { IoTrash } from "react-icons/io5";
 
 const Cards = (props) => {
     const dispatch = useDispatch();
     const [isLoading, setIsLoading] = useState(true)
     const email = props.currEmail;
     const movie = props.movie;
+    const isMovie = props.isMovie;
 
 
 
@@ -18,6 +20,7 @@ const Cards = (props) => {
         setTimeout(() => {
             setIsLoading(false)
         }, 1500)
+        console.log(isMovie)
     }, []) 
 
     return <>
@@ -38,14 +41,17 @@ const Cards = (props) => {
                       dispatch(
                           removeMovieFromLiked({ movieId: movie.id, email })
                       )
-                    }><i className="fa fa-trash"></i>
+                    }><IoTrash className="trash-icon"/>
+                        {/* <i className="fa fa-trash"></i> */}
                 </button>
 
-                <Link to={`/${props.type}/${movie.id}`} style={{textDecoration:"none", color:"white"}}>
-                <div className="clickable mt-20"  >
-                 <div className="card__title">{movie?movie.original_title:""}</div>
+            <Link to={`/${isMovie ? "movie" : "tv"}/${movie.id}`} style={{textDecoration:"none", color:"white"}}>
+                <div className="clickable mt-12"  >
+                 <div className="card__title">{
+                        isMovie?movie.original_title:movie.name
+                 }</div>
                  <div className="card__runtime">
-                        {movie?movie.release_date:""}
+                        {isMovie?movie.release_date:movie.first_air_date}
                         <span className="card__rating">{movie?movie.vote_average:""}<i className="fas fa-star" /></span>
                     </div>
                     <div className="card__description">{movie ? movie.overview.slice(5,118) + "...": ""}</div>
