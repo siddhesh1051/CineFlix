@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
 import { removeMovieFromLiked } from "../../store";
-import { removeWatchLaterMovie } from "../../store";
+import { removeMovieFromWatchLater } from "../../store";
 import { useDispatch } from 'react-redux';
 
 
@@ -203,9 +203,9 @@ const MovieDetail = (props) => {
                                                 ?<button className='bookmarkbtn' onClick={addToWatchLater}>
                                                 <i className="fa fa-bookmark"></i>
                                             </button>
-                                                :<button className='sharebtn_clicked' onClick={() =>
+                                                :<button className='bookmarkbtn_clicked' onClick={() =>
                                                     dispatch(
-                                                      removeWatchLaterMovie({ movieId: currentMovieDetail.id, email })
+                                                        removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
                                                       
                                                     )
                                                         && setisWatchActive(!isWatchActive)
@@ -215,8 +215,8 @@ const MovieDetail = (props) => {
                                             </button>}
 
                                                 {!isActive
-                                                ?<button className='sharebtn' onClick={addToWatchLater}>
-                                                <i className="fa fa-share"></i>
+                                                ?<button className='sharebtn' onClick={addToList}>
+                                                <i className="fa fa-heart"></i>
                                             </button>
                                                 :<button className='sharebtn_clicked' onClick={() =>
                                                     dispatch(
@@ -229,20 +229,20 @@ const MovieDetail = (props) => {
                                                 <i className="fa fa-heart"></i>
                                             </button>}
 
-{/* if doesnt have videos */}
-                                    {
+                                            {/* if doesnt have videos */}
+                                            {
                                          Videos.results.length === 0 &&(
                                             <>
                                                 {(
                                                     <div className="trailer&btn">
 
-                                        {!isActive
+                                            {!isActive
                                                             ? <button className='bookmarkbtn' onClick={addToList}>
                                                                 <i className="fa fa-bookmark"></i>
                                                             </button>
                                                             : <button className='sharebtn_clicked' onClick={() =>
                                                                 dispatch(
-                                                                    removeWatchLaterMovie({ movieId: currentMovieDetail.id, email })
+                                                                    removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
 
                                                                 )
                                                                 && setisWatchActive(!isWatchActive)

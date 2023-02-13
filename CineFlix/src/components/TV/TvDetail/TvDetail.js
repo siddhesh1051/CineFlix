@@ -6,6 +6,8 @@ import axios from "axios";
 import { HashLoader } from "react-spinners";
 import { useDispatch } from 'react-redux';
 import { removeMovieFromLiked } from "../../../store";
+import { removeMovieFromWatchLater } from "../../../store";
+
 
 
 
@@ -14,6 +16,7 @@ const TvDetail = (props) => {
     const [Cast, setCast] = useState();
     const [Similar, setSimilar] = useState();
     const [isActive, setIsActive] = useState(false);
+    const [isWatchActive, setisWatchActive] = useState(false);
     const [Videos, setVideos] = useState();
     const [Loading, setLoading] = useState(true)
     const { id } = useParams();
@@ -28,6 +31,7 @@ const TvDetail = (props) => {
         getData();
 
     }, []);
+    //add to fav
     const addToList = async () => {
         try {
             console.log(email);
@@ -41,6 +45,21 @@ const TvDetail = (props) => {
             console.log(error);
         }
     };
+
+        //add to watch later
+        const addToWatchLater = async () => {
+            try {
+                console.log(email);
+              await axios.post("http://localhost:4000/addWatchLater", {
+                email,
+                data: currentMovieDetail,
+              });
+              setisWatchActive(!isWatchActive);
+              
+            } catch (error) {
+                console.log(error);
+            }
+          };
 
     const getData = async () => {
         const res = await axios.get(
@@ -155,49 +174,69 @@ const TvDetail = (props) => {
 
                                 <div className="tailer_button_link">
 
-                                    {Videos && Videos.results &&
-                                        Videos.results.slice(0,1).map((hero) => (
-                                            <>
-                                                {(
-                                                    <div className="trailer&btn">
+                            {Videos &&
+                                Videos.results &&
+                                Videos.results.slice(0, 1).map((hero) => (
+                                    <>
+                                        {hero.key && (
+                                            <div key={hero.id} className="trailer&btn">
 
-                                                        <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
-                                                            Watch Trailer<i className="fa fa-play"></i>
-                                                        </a>
-                                                        <button className="bookmarkbtn">
-                                                            <i className="fa fa-bookmark"></i>
-                                                        </button>
+                                                <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
+                                                    Watch Trailer<i className="fa fa-play"></i>
+                                                </a>
+                                                
 
-                                                        {!isActive
-                                                            ? <button className='sharebtn' onClick={addToList}>
-                                                                <i className="fa fa-heart"></i>
-                                                            </button>
-                                                            : <button className='sharebtn_clicked' onClick={() =>
-                                                                dispatch(
-                                                                    removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
+                                                {!isWatchActive
+                                                ?<button className='bookmarkbtn' onClick={addToWatchLater}>
+                                                <i className="fa fa-bookmark"></i>
+                                            </button>
+                                                :<button className='bookmarkbtn_clicked' onClick={() =>
+                                                    dispatch(
+                                                        removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
+                                                      
+                                                    )
+                                                        && setisWatchActive(!isWatchActive)
+                                                    
+                                                  }>
+                                                <i className="fa fa-bookmark"></i>
+                                            </button>}
 
-                                                                )
-                                                                && setIsActive(!isActive)
+                                                {!isActive
+                                                ?<button className='sharebtn' onClick={addToList}>
+                                                <i className="fa fa-heart"></i>
+                                            </button>
+                                                :<button className='sharebtn_clicked' onClick={() =>
+                                                    dispatch(
+                                                      removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
+                                                      
+                                                    )
+                                                        && setIsActive(!setIsActive)
+                                                    
+                                                  }>
+                                                <i className="fa fa-heart"></i>
+                                            </button>}
 
-                                                            }>
-                                                                <i className="fa fa-heart"></i>
-                                                            </button>}
-                                                    </div>
-                                                )}
-                                            </>
-                                        ))}
-
-
-                                {
+                                            {/* if doesnt have videos */}
+                                            {
                                          Videos.results.length === 0 &&(
                                             <>
                                                 {(
                                                     <div className="trailer&btn">
 
-                                                        
-                                                        <button className="bookmarkbtn">
-                                                            <i className="fa fa-bookmark"></i>
-                                                        </button>
+                                            {!isActive
+                                                            ? <button className='bookmarkbtn' onClick={addToList}>
+                                                                <i className="fa fa-bookmark"></i>
+                                                            </button>
+                                                            : <button className='sharebtn_clicked' onClick={() =>
+                                                                dispatch(
+                                                                    removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
+
+                                                                )
+                                                                && setisWatchActive(!isWatchActive)
+
+                                                            }>
+                                                                <i className="fa fa-bookmark"></i>
+                                                            </button>}
 
                                                         {!isActive
                                                             ? <button className='sharebtn' onClick={addToList}>
@@ -217,8 +256,13 @@ const TvDetail = (props) => {
                                                 )}
                                             </>
                                         )}
+                                            </div>
+                                        )}
+                                    </>
+                                ))}
 
-                                </div>
+
+                        </div>
 
 
                                         

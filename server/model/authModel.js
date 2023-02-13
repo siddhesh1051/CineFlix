@@ -12,13 +12,16 @@ const userSchema = new mongoose.Schema({
     required: [true, "Password is Required"],
   },
   
-  fav : {Array,
+  fav : {
+  type : Array,
   default: []
 },
 
-  watch : {Array,
+  watch : {
+  type : Array,
   default: []
-}
+  }
+
 
 });
 

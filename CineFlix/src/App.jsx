@@ -25,6 +25,7 @@ import Login from './components/Authentication/Login';
 import MyFavorites from './components/myFavorites/MyFavorites';
 // import Signup from './components/Authentication/Signup/Signup';
 // import Login from './components/Authentication/Login/Login';
+import MyWatchLaterMovies from './components/watchLater/myWatchLater';
 
 
 
@@ -93,6 +94,7 @@ function App() {
                 <Route path="/movie/:id/similar" element = {< ShowSimilarMovie/>}></Route>
                 <Route path="/movie/:id/credits" element = {< ShowCastMovie/>}></Route>
                 <Route path="/favorites" element = {< MyFavorites currEmail={username}/>}></Route>
+                <Route path="/watch_later" element = {< MyWatchLaterMovies currEmail={username}/>}></Route>
                 
 
               {/* For Tv */}
@@ -101,7 +103,6 @@ function App() {
               <Route path="/tv/:id" element = {<TvDetail userFrom={cookies.jwt} currEmail={username}/>}></Route>
               <Route path="/tv/:id/similar" element = {< ShowSimilarTv/>}></Route>
               <Route path="/tv/:id/credits" element = {< ShowCastTv/>}></Route>
-              {/* <Route path="/tv/:id/credits" element = {< ShowCastTv/>}></Route> */}
              
             {/* Other Routes */}
             <Route path="/login" element = {<Login/>}></Route>

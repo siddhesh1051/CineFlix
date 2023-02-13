@@ -7,7 +7,9 @@ import {
   
   const initialState = {
     movies: [],
-    watchLater: [],
+    
+    watchLater: []
+
     
   };
 
@@ -37,28 +39,33 @@ import {
   );
 
   //Watch Later
-  export const getWatchLaterMovies = createAsyncThunk(
-    "netflix/getLiked",
+  
+  export const getUsersWatchLaterMovies = createAsyncThunk(
+    "netflix/getWatchLater",
     async (email) => {
       const {
         data: { movies },
-      } = await axios.get(`http://localhost:4000/watch/${email}`);
+      } = await axios.get(`http://localhost:4000/watchLater/${email}`);
       return movies;
     }
   );
-  
-  export const removeWatchLaterMovie = createAsyncThunk(
-    "netflix/deleteLiked",
+
+  export const removeMovieFromWatchLater = createAsyncThunk(
+    "netflix/deleteWatchLater",
     async ({ movieId, email }) => {
       const {
         data: { movies },
-      } = await axios.put("http://localhost:4000/removeFav", {
+      } = await axios.put("http://localhost:4000/removeWatchLater", {
         email,
         movieId,
       });
       return movies;
     }
   );
+
+
+  
+  
   
   const NetflixSlice = createSlice({
     name: "Netflix",
@@ -71,12 +78,13 @@ import {
       builder.addCase(removeMovieFromLiked.fulfilled, (state, action) => {
         state.movies = action.payload;
       });
-      builder.addCase(getWatchLaterMovies.fulfilled, (state, action) => {
+      builder.addCase(getUsersWatchLaterMovies.fulfilled, (state, action) => {
         state.watchLater = action.payload;
       });
-      builder.addCase(removeWatchLaterMovie.fulfilled, (state, action) => {
+      builder.addCase(removeMovieFromWatchLater.fulfilled, (state, action) => {
         state.watchLater = action.payload;
       });
+      
     },
   });
   

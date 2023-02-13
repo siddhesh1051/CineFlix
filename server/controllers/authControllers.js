@@ -138,7 +138,7 @@ module.exports.getLikedMovies = async (req, res) => {
 module.exports.addWatchLater = async (req, res) => {
   try {
     const { email, data } = req.body;
-    const user = await await User.findOne({ email });
+    const user = await User.findOne({ email });
     if (user) {
       const { watch } = user;
       const movieAlreadyLiked = watch.find(({ id }) => id === data.id);
