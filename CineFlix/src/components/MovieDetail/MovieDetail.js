@@ -187,95 +187,92 @@ const MovieDetail = (props) => {
 
                         <div className="tailer_button_link">
 
-                            {Videos &&
-                                Videos.results &&
-                                Videos.results.slice(0, 1).map((hero) => (
-                                    <>
-                                        {hero.key && (
-                                            <div key={hero.id} className="trailer&btn">
+{Videos && Videos.results &&
+    Videos.results.slice(0,1).map((hero) => (
+        <>
+            {(
+                <div className="trailer&btn">
 
-                                                <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
-                                                    Watch Trailer<i className="fa fa-play"></i>
-                                                </a>
-                                                
+                    <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
+                        Watch Trailer<i className="fa fa-play"></i>
+                    </a>
+                    {!isWatchActive
+                        ? <button className='bookmarkbtn' onClick={addToWatchLater}>
+                            <i className="fa fa-bookmark"></i>
+                        </button>
+                        : <button className='bookmarkbtn_clicked' onClick={() =>
+                            dispatch(
+                                removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
 
-                                                {!isWatchActive
-                                                ?<button className='bookmarkbtn' onClick={addToWatchLater}>
-                                                <i className="fa fa-bookmark"></i>
-                                            </button>
-                                                :<button className='bookmarkbtn_clicked' onClick={() =>
-                                                    dispatch(
-                                                        removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
-                                                      
-                                                    )
-                                                        && setisWatchActive(!isWatchActive)
-                                                    
-                                                  }>
-                                                <i className="fa fa-bookmark"></i>
-                                            </button>}
+                            )
+                            && setisWatchActive(!isWatchActive)
 
-                                                {!isActive
-                                                ?<button className='sharebtn' onClick={addToList}>
-                                                <i className="fa fa-heart"></i>
-                                            </button>
-                                                :<button className='sharebtn_clicked' onClick={() =>
-                                                    dispatch(
-                                                      removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
-                                                      
-                                                    )
-                                                        && setIsActive(!setIsActive)
-                                                    
-                                                  }>
-                                                <i className="fa fa-heart"></i>
-                                            </button>}
+                        }>
+                            <i className="fa fa-bookmark"></i>
+                        </button>}
 
-                                            {/* if doesnt have videos */}
-                                            {
-                                         Videos.results.length === 0 &&(
-                                            <>
-                                                {(
-                                                    <div className="trailer&btn">
+                    {!isActive
+                        ? <button className='sharebtn' onClick={addToList}>
+                            <i className="fa fa-heart"></i>
+                        </button>
+                        : <button className='sharebtn_clicked' onClick={() =>
+                            dispatch(
+                                removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
 
-                                            {!isActive
-                                                            ? <button className='bookmarkbtn' onClick={addToList}>
-                                                                <i className="fa fa-bookmark"></i>
-                                                            </button>
-                                                            : <button className='sharebtn_clicked' onClick={() =>
-                                                                dispatch(
-                                                                    removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
+                            )
+                            && setIsActive(!isActive)
 
-                                                                )
-                                                                && setisWatchActive(!isWatchActive)
-
-                                                            }>
-                                                                <i className="fa fa-bookmark"></i>
-                                                            </button>}
-
-                                                        {!isActive
-                                                            ? <button className='sharebtn' onClick={addToList}>
-                                                                <i className="fa fa-heart"></i>
-                                                            </button>
-                                                            : <button className='sharebtn_clicked' onClick={() =>
-                                                                dispatch(
-                                                                    removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
-
-                                                                )
-                                                                && setIsActive(!isActive)
-
-                                                            }>
-                                                                <i className="fa fa-heart"></i>
-                                                            </button>}
-                                                    </div>
-                                                )}
-                                            </>
-                                        )}
-                                            </div>
-                                        )}
-                                    </>
-                                ))}
+                        }>
+                            <i className="fa fa-heart"></i>
+                        </button>}
+                </div>
+            )}
+        </>
+    ))}
 
 
-                        </div>
+{
+     Videos.results.length === 0 &&(
+        <>
+            {(
+                <div className="trailer&btn">
+
+                    
+                    {!isWatchActive
+                        ? <button className='bookmarkbtn' onClick={addToWatchLater}>
+                            <i className="fa fa-bookmark"></i>
+                        </button>
+                        : <button className='bookmarkbtn_clicked' onClick={() =>
+                            dispatch(
+                                removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
+
+                            )
+                            && setisWatchActive(!isWatchActive)
+
+                        }>
+                            <i className="fa fa-bookmark"></i>
+                        </button>}
+
+                    {!isActive
+                        ? <button className='sharebtn' onClick={addToList}>
+                            <i className="fa fa-heart"></i>
+                        </button>
+                        : <button className='sharebtn_clicked' onClick={() =>
+                            dispatch(
+                                removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
+
+                            )
+                            && setIsActive(!isActive)
+
+                        }>
+                            <i className="fa fa-heart"></i>
+                        </button>}
+                </div>
+            )}
+        </>
+    )}
+
+</div>
 
 {/* kmf
 dmsfds/ */}
