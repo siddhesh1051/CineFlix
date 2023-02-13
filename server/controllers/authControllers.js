@@ -64,7 +64,7 @@ module.exports.login = async (req, res) => {
     // user.fav.push(movieId);
     // user.fav.push(movieId);
     
-    console.log(user.fav)
+    // console.log(user.fav)
   } catch (err) {
     const errors = handleErrors(err);
     res.json({ errors, status: false });
@@ -132,6 +132,28 @@ module.exports.getLikedMovies = async (req, res) => {
     return res.json({ msg: "Error fetching movies." });
   }
 };
+module.exports.checkLiked = async (req, res) => {
+  try {
+    const { email, data } = req.body;
+    const user = await await User.findOne({ email });
+    if (user) {
+      const { fav } = user;
+      const movieAlreadyLiked = fav.find(({ id }) => id === data.id);
+      console.log(movieAlreadyLiked);
+      
+      if (movieAlreadyLiked) {
+        return res.json({ movieAlreadyLiked: true }); 
+      }
+      else{
+        return res.json({ movieAlreadyLiked: false });
+    }
+  }
+  } catch (error) {
+    return res.json({ msg: "Error occured" });
+  }
+
+}
+
 
 //Watch Later
 
@@ -144,6 +166,7 @@ module.exports.addWatchLater = async (req, res) => {
       const movieAlreadyLiked = watch.find(({ id }) => id === data.id);
       if (!movieAlreadyLiked) {
         await User.findByIdAndUpdate(
+          
           user._id,
           {
             watch: [...user.watch, data],
@@ -196,3 +219,25 @@ module.exports.getWatchLater = async (req, res) => {
     return res.json({ msg: "Error fetching movies." });
   }
 };
+
+module.exports.checkWatchLater = async (req, res) => {
+  try {
+    const { email, data } = req.body;
+    const user = await await User.findOne({ email });
+    if (user) {
+      const { watch } = user;
+      const movieAlreadyLiked = watch.find(({ id }) => id === data.id);
+      console.log(movieAlreadyLiked);
+      
+      if (movieAlreadyLiked) {
+        return res.json({ movieAlreadyLiked: true }); 
+    }
+    else{
+        return res.json({ movieAlreadyLiked: false });
+    }
+  }
+  } catch (error) {
+    return res.json({ msg: "Error occured" });
+  }
+
+}

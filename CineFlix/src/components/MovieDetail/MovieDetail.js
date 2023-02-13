@@ -30,22 +30,51 @@ const MovieDetail = (props) => {
         getData();
 
     }, []);
+    useEffect(() => {
+        checkLiked(); 
+        console.log(isActive);
+    });
+    
+    
+
     const addToList = async () => {
         try {
-            console.log(email);
           await axios.post("http://localhost:4000/addFav", {
             email,
             data: currentMovieDetail,
-          });
-          setIsActive(!isActive);
+          }).then(setIsActive(!isActive));
+
+          
+          
+
+          
+            
+        //   setIsActive(!isActive);
           
         } catch (error) {
             console.log(error);
         }
       };
+
+
+    const checkLiked = async () => {
+        try {
+          await axios.post("http://localhost:4000/checkLiked", {
+            email,
+            data: currentMovieDetail,
+          })
+            .then(res => {
+                setIsActive(res.data.movieAlreadyLiked)
+                });
+          
+          
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const addToWatchLater = async () => {
         try {
-            console.log(email);
           await axios.post("http://localhost:4000/addWatchLater", {
             email,
             data: currentMovieDetail,
@@ -56,21 +85,9 @@ const MovieDetail = (props) => {
             console.log(error);
         }
       };
-    // const removeFromList = async () => {
-    //     try {
-    //         const email = props.currEmail;
-    //         console.log(email + " removing");
-    //       await axios.post("http://localhost:4000/removeFav", {
-    //         email,
-    //         movieID: currentMovieDetail.id,
-    //       });
-    //       setIsActive(!isActive);
-          
-          
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
+
+
+    
 
     const getData = async () => {
         const res = await axios.get(

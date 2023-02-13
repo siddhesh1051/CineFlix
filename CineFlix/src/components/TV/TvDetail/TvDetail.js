@@ -170,7 +170,7 @@ const TvDetail = (props) => {
                                 </div>
                                 <div className="movie__tagline">
                                     {currentMovieDetail ? currentMovieDetail.tagline : ""}
-                                </div>
+                                </div> 
 
                                         
                                         {/* dijfid
