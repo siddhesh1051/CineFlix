@@ -38,10 +38,6 @@ const MovieDetail = (props) => {
         
     } , [email, isActive, isWatchActive]);
 
-    // useEffect(() => {
-    //     // checkLiked(); 
-    //     console.log("isactive vala " + isActive);
-    // } , [isActive]);
     
     
 

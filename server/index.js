@@ -3,8 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
-const dotenv = require('dotenv');
-
+const dotenv = require('dotenv').config();
 
 const app = express();
 
@@ -17,7 +16,7 @@ app.listen(4000, (err) => {
 });
 
 mongoose
-  .connect("mongodb+srv://admin:admin@cluster0.jnfm9jl.mongodb.net/?retryWrites=true&w=majority", {
+  .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
