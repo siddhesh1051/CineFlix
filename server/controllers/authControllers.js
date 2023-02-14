@@ -139,7 +139,6 @@ module.exports.checkLiked = async (req, res) => {
     if (user) {
       const { fav } = user;
       const movieAlreadyLiked = fav.find(({ id }) => id === data.id);
-      console.log(movieAlreadyLiked);
       
       if (movieAlreadyLiked) {
         return res.json({ movieAlreadyLiked: true }); 
@@ -227,7 +226,6 @@ module.exports.checkWatchLater = async (req, res) => {
     if (user) {
       const { watch } = user;
       const movieAlreadyLiked = watch.find(({ id }) => id === data.id);
-      console.log(movieAlreadyLiked);
       
       if (movieAlreadyLiked) {
         return res.json({ movieAlreadyLiked: true }); 

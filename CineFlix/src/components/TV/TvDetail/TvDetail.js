@@ -31,35 +31,78 @@ const TvDetail = (props) => {
         getData();
 
     }, []);
-    //add to fav
+    useEffect(() => {
+        
+        checkLiked(); 
+        checkWatchLater();
+        
+    } , [email, isActive, isWatchActive]);
+
+  
+    
+
     const addToList = async () => {
         try {
-            console.log(email);
-            await axios.post("http://localhost:4000/addFav", {
-                email,
-                data: currentMovieDetail,
-            });
-            setIsActive(!isActive);
-
+          await axios.post("http://localhost:4000/addFav", {
+            email,
+            data: currentMovieDetail,
+          }).then(function(res){
+           checkLiked();
+        });
+        //   setIsActive(!isActive);
+          
         } catch (error) {
             console.log(error);
         }
-    };
+      };
 
-        //add to watch later
-        const addToWatchLater = async () => {
-            try {
-                console.log(email);
-              await axios.post("http://localhost:4000/addWatchLater", {
-                email,
-                data: currentMovieDetail,
-              });
-              setisWatchActive(!isWatchActive);
-              
-            } catch (error) {
-                console.log(error);
-            }
-          };
+
+    const checkLiked = async () => {
+        try {
+          await axios.post("http://localhost:4000/checkLiked", {
+            email,
+            data: currentMovieDetail,
+          })
+            .then(res => {
+                setIsActive(res.data.movieAlreadyLiked)
+                console.log("checkliked " + isActive);
+                });
+          
+          
+        } catch (error) {
+            console.log(error);
+        }
+    }; 
+    const checkWatchLater = async () => {
+        try {
+          await axios.post("http://localhost:4000/checkWatchLater", {
+            email,
+            data: currentMovieDetail,
+          })
+            .then(res => {
+                setisWatchActive(res.data.movieAlreadyLiked)
+                console.log("checkwatchlater " + isWatchActive);
+                });
+          
+          
+        } catch (error) {
+            console.log(error);
+        }
+    }; 
+
+    const addToWatchLater = async () => {
+        try {
+          await axios.post("http://localhost:4000/addWatchLater", {
+            email,
+            data: currentMovieDetail,
+          }).then(function(res){
+           checkWatchLater();
+        });
+          
+        } catch (error) {
+            console.log(error);
+        }
+      };
 
     const getData = async () => {
         const res = await axios.get(
