@@ -67,11 +67,6 @@ function App() {
 
   
 
-  // const logOut = () => {
-  //   removeCookie("jwt");
-  //   navigate("/login");
-  // };
-
 
   return (
     <div className="flex lg:gap-[1.5rem] ">

@@ -30,10 +30,18 @@ const MovieDetail = (props) => {
         getData();
 
     }, []);
+    
     useEffect(() => {
+        
         checkLiked(); 
-        console.log(isActive);
-    });
+        checkWatchLater();
+        
+    } , [email, isActive, isWatchActive]);
+
+    // useEffect(() => {
+    //     // checkLiked(); 
+    //     console.log("isactive vala " + isActive);
+    // } , [isActive]);
     
     
 
@@ -42,13 +50,9 @@ const MovieDetail = (props) => {
           await axios.post("http://localhost:4000/addFav", {
             email,
             data: currentMovieDetail,
-          }).then(setIsActive(!isActive));
-
-          
-          
-
-          
-            
+          }).then(function(res){
+           checkLiked();
+        });
         //   setIsActive(!isActive);
           
         } catch (error) {
@@ -65,21 +69,39 @@ const MovieDetail = (props) => {
           })
             .then(res => {
                 setIsActive(res.data.movieAlreadyLiked)
+                console.log("checkliked " + isActive);
                 });
           
           
         } catch (error) {
             console.log(error);
         }
-    };
+    }; 
+    const checkWatchLater = async () => {
+        try {
+          await axios.post("http://localhost:4000/checkWatchLater", {
+            email,
+            data: currentMovieDetail,
+          })
+            .then(res => {
+                setisWatchActive(res.data.movieAlreadyLiked)
+                console.log("checkwatchlater " + isWatchActive);
+                });
+          
+          
+        } catch (error) {
+            console.log(error);
+        }
+    }; 
 
     const addToWatchLater = async () => {
         try {
           await axios.post("http://localhost:4000/addWatchLater", {
             email,
             data: currentMovieDetail,
-          });
-          setisWatchActive(!isWatchActive);
+          }).then(function(res){
+           checkWatchLater();
+        });
           
         } catch (error) {
             console.log(error);
@@ -236,10 +258,10 @@ const MovieDetail = (props) => {
                             dispatch(
                                 removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
 
-                            )
-                            && setIsActive(!isActive)
-
-                        }>
+                                )
+                                && setIsActive(!isActive)
+                                
+                            }>
                             <i className="fa fa-heart"></i>
                         </button>}
                 </div>

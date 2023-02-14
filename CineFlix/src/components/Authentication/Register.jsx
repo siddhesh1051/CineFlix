@@ -15,6 +15,8 @@ function Register() {
   useEffect(() => {
     if (cookies.jwt) {
       navigate("/");
+      window.location.reload();
+
     }
   }, [cookies, navigate]);
 
@@ -40,6 +42,8 @@ function Register() {
           else if (password) generateError(password);
         } else {
           navigate("/");
+          window.location.reload();
+
         }
       }
     } catch (ex) {

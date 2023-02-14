@@ -8,7 +8,7 @@ import { store } from "./store";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
 
       <Router>
@@ -18,5 +18,5 @@ root.render(
       </Router>
 
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
