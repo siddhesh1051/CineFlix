@@ -5,13 +5,15 @@ const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
 const dotenv = require('dotenv').config();
 
+const PORT = process.env.PORT || 4000;
+
 const app = express();
 
-app.listen(4000, (err) => {
+app.listen(PORT, (err) => {
   if (err) {
     console.log(err);
   } else {
-    console.log("Server Started Successfully.");
+    console.log(`Server Started Successfully on ${PORT}`);
   }
 });
 
