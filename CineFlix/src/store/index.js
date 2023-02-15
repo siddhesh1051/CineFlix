@@ -20,7 +20,7 @@ import {
     async (email) => {
       const {
         data: { movies },
-      } = await axios.get(`https://cineflix-kyhg.onrender.com/liked/${email}`);
+      } = await axios.get(`https://cineflix-api.up.railway.app/liked/${email}`);
       return movies;
     }
   );
@@ -30,7 +30,7 @@ import {
     async ({ movieId, email }) => {
       const {
         data: { movies },
-      } = await axios.put("https://cineflix-kyhg.onrender.com/removeFav", {
+      } = await axios.put("https://cineflix-api.up.railway.app/removeFav", {
         email,
         movieId,
       });
@@ -45,7 +45,7 @@ import {
     async (email) => {
       const {
         data: { movies },
-      } = await axios.get(`https://cineflix-kyhg.onrender.com/watchLater/${email}`);
+      } = await axios.get(`https://cineflix-api.up.railway.app/watchLater/${email}`);
       return movies;
     }
   );
@@ -55,7 +55,7 @@ import {
     async ({ movieId, email }) => {
       const {
         data: { movies },
-      } = await axios.put("https://cineflix-kyhg.onrender.com/removeWatchLater", {
+      } = await axios.put("https://cineflix-api.up.railway.app/removeWatchLater", {
         email,
         movieId,
       });

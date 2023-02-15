@@ -24,7 +24,7 @@ function Login() {
     event.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://cineflix-kyhg.onrender.com/login",
+        "https://cineflix-api.up.railway.app/login",
         {
           ...values,
         },

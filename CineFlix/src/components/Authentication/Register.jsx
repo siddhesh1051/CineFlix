@@ -29,7 +29,7 @@ function Register() {
     event.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://cineflix-kyhg.onrender.com/register",
+        "https://cineflix-api.up.railway.app/register",
         {
           ...values,
         },

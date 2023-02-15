@@ -43,7 +43,7 @@ const MovieDetail = (props) => {
 
     const addToList = async () => {
         try {
-          await axios.post("https://cineflix-kyhg.onrender.com/addFav", {
+          await axios.post("https://cineflix-api.up.railway.app/addFav", {
             email,
             data: currentMovieDetail,
           }).then(function(res){
@@ -59,7 +59,7 @@ const MovieDetail = (props) => {
 
     const checkLiked = async () => {
         try {
-          await axios.post("https://cineflix-kyhg.onrender.com/checkLiked", {
+          await axios.post("https://cineflix-api.up.railway.app/checkLiked", {
             email,
             data: currentMovieDetail,
           })
@@ -75,7 +75,7 @@ const MovieDetail = (props) => {
     }; 
     const checkWatchLater = async () => {
         try {
-          await axios.post("https://cineflix-kyhg.onrender.com/checkWatchLater", {
+          await axios.post("https://cineflix-api.up.railway.app/checkWatchLater", {
             email,
             data: currentMovieDetail,
           })
@@ -92,7 +92,7 @@ const MovieDetail = (props) => {
 
     const addToWatchLater = async () => {
         try {
-          await axios.post("https://cineflix-kyhg.onrender.com/addWatchLater", {
+          await axios.post("https://cineflix-api.up.railway.app/addWatchLater", {
             email,
             data: currentMovieDetail,
           }).then(function(res){
