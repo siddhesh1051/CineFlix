@@ -38,7 +38,7 @@ function App() {
   useEffect(() => {
     const verifyUser = async () => {
       if (!cookies.jwt) {
-        navigate("/login");
+        // navigate("/login");
         
       } else {
         
@@ -62,7 +62,7 @@ function App() {
       }
       
     };
-    verifyUser();
+    // verifyUser();
   }, [cookies, removeCookie]);
 
   
