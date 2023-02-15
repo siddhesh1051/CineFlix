@@ -37,12 +37,12 @@ function Login() {
           else if (password) generateError(password);
         } else {
           navigate("/");
+          window.location.reload();
         }
       }
     } catch (ex) {
-      console.log(ex);
+      console.log(esx);
     }
-    window.location.reload();
   };
   return (
 

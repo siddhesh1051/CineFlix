@@ -15,7 +15,6 @@ function Register() {
   useEffect(() => {
     if (cookies.jwt) {
       navigate("/");
-      window.location.reload();
 
     }
   }, [cookies, navigate]);
