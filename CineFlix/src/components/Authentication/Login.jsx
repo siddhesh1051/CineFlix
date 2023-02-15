@@ -41,7 +41,7 @@ function Login() {
         }
       }
     } catch (ex) {
-      console.log(esx);
+      console.log(ex);
     }
   };
   return (
