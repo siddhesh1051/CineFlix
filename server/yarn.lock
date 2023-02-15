@@ -831,13 +831,18 @@
   "resolved" "https://registry.npmjs.org/base64-js/-/base64-js-1.5.1.tgz"
   "version" "1.5.1"
 
-"bcrypt@^5.0.1":
+"bcrypt@^5.1.0":
   "integrity" "sha512-RHBS7HI5N5tEnGTmtR/pppX0mmDSBpQ4aCBsj7CEQfYXDcO74A8sIBYcJMuCsis2E81zDxeENYhv66oZwLiA+Q=="
   "resolved" "https://registry.npmjs.org/bcrypt/-/bcrypt-5.1.0.tgz"
   "version" "5.1.0"
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.10"
     "node-addon-api" "^5.0.0"
+
+"bcryptjs@^2.4.3":
+  "integrity" "sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ=="
+  "resolved" "https://registry.npmjs.org/bcryptjs/-/bcryptjs-2.4.3.tgz"
+  "version" "2.4.3"
 
 "binary-extensions@^2.0.0":
   "integrity" "sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA=="
