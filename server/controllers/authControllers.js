@@ -44,7 +44,7 @@ module.exports.register = async (req, res, next) => {
       withCredentials: true,
       httpOnly: false,
       maxAge: maxAge * 1000,
-      sameSite:'none',      
+      sameSite: None,      
       
     });
 
@@ -61,7 +61,7 @@ module.exports.login = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-    res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000,sameSite:'none'});
+    res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000,sameSite:None});
     res.status(200).json({ user: user._id, status: true });
     // user.fav.push(movieId);
     // user.fav.push(movieId);
