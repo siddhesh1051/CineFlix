@@ -42,8 +42,10 @@ module.exports.register = async (req, res, next) => {
 
     res.cookie("jwt", token, {
       withCredentials: true,
-      httpOnly: true,
+      httpOnly: false,
       maxAge: maxAge * 1000,
+      domain: ".up.railway.app"
+      
     });
 
     res.status(201).json({ user: user._id, created: true });
@@ -59,7 +61,7 @@ module.exports.login = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-    res.cookie("jwt", token, { httpOnly: false, maxAge: maxAge * 1000 });
+    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000, domain: ".up.railway.app"});
     res.status(200).json({ user: user._id, status: true });
     // user.fav.push(movieId);
     // user.fav.push(movieId);
