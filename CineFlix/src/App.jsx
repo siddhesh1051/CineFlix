@@ -43,7 +43,7 @@ function App() {
       } else {
         
         const { data } = await axios.post(
-          "https://cineflix-api.up.railway.app",
+          process.env.REACT_APP_API,
           {},
           {
             withCredentials: true,

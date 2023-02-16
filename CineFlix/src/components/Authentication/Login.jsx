@@ -24,7 +24,7 @@ function Login() {
     event.preventDefault();
     try {
       const { data } = await axios.post(
-        "https://cineflix-api.up.railway.app/login",
+        process.env.REACT_APP_API + "/login",
         {
           ...values,
         },

@@ -20,7 +20,7 @@ import {
     async (email) => {
       const {
         data: { movies },
-      } = await axios.get(`https://cineflix-api.up.railway.app/liked/${email}`);
+      } = await axios.get(process.env.REACT_APP_API +`/liked/${email}`);
       return movies;
     }
   );
@@ -30,7 +30,7 @@ import {
     async ({ movieId, email }) => {
       const {
         data: { movies },
-      } = await axios.put("https://cineflix-api.up.railway.app/removeFav", {
+      } = await axios.put(process.env.REACT_APP_API +"/removeFav", {
         email,
         movieId,
       });
@@ -45,7 +45,7 @@ import {
     async (email) => {
       const {
         data: { movies },
-      } = await axios.get(`https://cineflix-api.up.railway.app/watchLater/${email}`);
+      } = await axios.get(process.env.REACT_APP_API +`/watchLater/${email}`);
       return movies;
     }
   );
@@ -55,7 +55,7 @@ import {
     async ({ movieId, email }) => {
       const {
         data: { movies },
-      } = await axios.put("https://cineflix-api.up.railway.app/removeWatchLater", {
+      } = await axios.put(process.env.REACT_APP_API +"/removeWatchLater", {
         email,
         movieId,
       });
