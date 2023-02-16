@@ -44,7 +44,7 @@ module.exports.register = async (req, res, next) => {
       withCredentials: true,
       httpOnly: false,
       maxAge: maxAge * 1000,
-      domain: ".railway.app"
+      domain: ".vercel.app"
       
     });
 
@@ -61,7 +61,7 @@ module.exports.login = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000, domain: ".railway.app"});
+    res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000, domain: ".vercel.app"});
     res.status(200).json({ user: user._id, status: true });
     // user.fav.push(movieId);
     // user.fav.push(movieId);
