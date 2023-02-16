@@ -42,7 +42,7 @@ module.exports.register = async (req, res, next) => {
 
     res.cookie("jwt", token, {
       withCredentials: true,
-      httpOnly: false,
+      httpOnly: true,
       maxAge: maxAge * 1000,
     });
 
