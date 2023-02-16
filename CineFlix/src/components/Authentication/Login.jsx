@@ -28,7 +28,8 @@ function Login() {
         {
           ...values,
         },
-        { withCredentials: true }
+        { withCredentials: true ,
+          Credentials:"include"}
       );
       if (data) {
         if (data.errors) {
