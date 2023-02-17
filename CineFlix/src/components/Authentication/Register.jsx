@@ -42,7 +42,7 @@ function Register() {
           else if (password) generateError(password);
         } else {
           navigate("/");
-          window.location.reload();
+          // window.location.reload();
 
         }
       }
