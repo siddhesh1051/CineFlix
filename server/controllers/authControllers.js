@@ -43,7 +43,7 @@ module.exports.register = async (req, res, next) => {
     res.cookie("jwt", token, {
       httpOnly: false,
       maxAge: maxAge * 1000,
-      domain: ".onrender.com",
+      domain: "onrender.com",
       sameSite: "lax",
       secure: true
     });
@@ -64,7 +64,7 @@ module.exports.login = async (req, res) => {
     res.cookie("jwt", token, {
       httpOnly: false,
       maxAge: maxAge * 1000 ,
-      domain: ".onrender.com",
+      domain: "onrender.com",
       sameSite: "lax",
       secure: true
     });

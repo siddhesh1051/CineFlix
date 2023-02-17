@@ -43,7 +43,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/", authRoutes);
 app.get("/", (req, res) => {
-  res.send("Hello World render");
+  res.send("Hello World render 2");
 });
 // app.use("/favorite",  require('./routes/favorite'));
 
