@@ -10,7 +10,7 @@ function Login() {
   const [cookies] = useCookies([]);
   const navigate = useNavigate();
   useEffect(() => {
-    if (cookies.jwt) {
+    if (localStorage.getItem("token")) {
       navigate("/");
     }
   }, [cookies, navigate]);
@@ -28,9 +28,20 @@ function Login() {
         {
           ...values,
         },
-        { withCredentials: true ,
-          Credentials:"include"}
-      );
+        {
+          withCredentials: true,
+        }
+         
+      )
+      console.log(data);
+      
+     const token = data.token;
+     const user = data.user;
+     localStorage.setItem('token', token);
+     console.log(user);
+      
+
+
       if (data) {
         if (data.errors) {
           const { email, password } = data.errors;

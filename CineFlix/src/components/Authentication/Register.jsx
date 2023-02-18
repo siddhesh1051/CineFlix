@@ -13,7 +13,7 @@ function Register() {
   const [cookies] = useCookies(["cookie-name"]);
   const navigate = useNavigate();
   useEffect(() => {
-    if (cookies.jwt) {
+    if (localStorage.getItem("token")) {
       navigate("/");
 
     }
@@ -32,9 +32,18 @@ function Register() {
         {
           ...values,
         },
-        { withCredentials: true,
-          Credentials:"include" }
-      );
+        {
+          withCredentials: true,
+        }
+         
+      )
+      
+     const token = data.token;
+     const user = data.user;
+
+     localStorage.setItem('token', token);
+     console.log(user);
+     
       if (data) {
         if (data.errors) {
           const { email, password } = data.errors;
@@ -42,7 +51,7 @@ function Register() {
           else if (password) generateError(password);
         } else {
           navigate("/");
-          // window.location.reload();
+          window.location.reload();
 
         }
       }

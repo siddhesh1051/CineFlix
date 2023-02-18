@@ -6,7 +6,7 @@ import { Link,NavLink, useNavigate } from 'react-router-dom';
 function NavBar(props) {
   const navigate = useNavigate();
   const logOut = () => {
-    props.removeCookie("jwt");
+    localStorage.removeItem("token"); 
     navigate("/login");
     window.location.reload();
   };

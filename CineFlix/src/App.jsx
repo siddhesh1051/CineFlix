@@ -37,33 +37,35 @@ function App() {
   const [username, setusername] = useState("")
   useEffect(() => {
     const verifyUser = async () => {
-      if (!cookies.jwt) {
+      if (localStorage.getItem("token")===null) {
         navigate("/login");
         
       } else {
         
         const { data } = await axios.post(
           process.env.REACT_APP_API,
-          {},
+          {token:localStorage.getItem("token")},
           {
             withCredentials: true,
           }
-        );
+        )
+        console.log(data.user)
         
         
         if (!data.status) {
-          removeCookie("jwt");
-          navigate("/login");
+          localStorage.removeItem("token"); 
+           navigate("/login");
+          console.log(data.user)
         } else
+        setusername(data.user)
         // toast(`Hi ${data.user} 🦄`, {
         //   theme: "dark",
         // });
-        setusername(data.user)
       }
       
     };
     verifyUser();
-  }, [cookies, removeCookie]);
+  }, [navigate]);
 
   
 
@@ -75,8 +77,8 @@ function App() {
   
  
     {/* {cookies.jwt &&<NavBar />} */}
-    {cookies.jwt?<NavBar cookies={cookies} removeCookie={removeCookie} username={username}/>:null}
-    {cookies.jwt?<Menu cookies={cookies} removeCookie={removeCookie}/>:null} 
+    {localStorage.getItem("token")?<NavBar username={username}/>:null}
+    {localStorage.getItem("token")?<Menu username={username} />:null} 
             <Routes>
 
               

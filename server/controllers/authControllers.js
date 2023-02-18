@@ -40,15 +40,15 @@ module.exports.register = async (req, res, next) => {
     const user = await User.create({ email, password });
     const token = createToken(user._id);
 
-    res.cookie("jwt", token, {
-      httpOnly: false,
-      maxAge: maxAge * 1000,
-      domain: "onrender.com",
-      sameSite: "lax",
-      secure: true
-    });
+    // res.cookie("jwt", token, {
+    //   httpOnly: false,
+    //   maxAge: maxAge * 1000,
+    //   domain: "onrender.com",
+    //   sameSite: "lax",
+    //   secure: true
+    // });
 
-    res.status(201).json({ user: user._id, created: true });
+    res.status(201).json({ user: user._id, token: token, created: true });
   } catch (err) {
     console.log(err);
     const errors = handleErrors(err);
@@ -61,14 +61,15 @@ module.exports.login = async (req, res) => {
   try {
     const user = await User.login(email, password);
     const token = createToken(user._id);
-    res.cookie("jwt", token, {
-      httpOnly: false,
-      maxAge: maxAge * 1000 ,
-      domain: "onrender.com",
-      sameSite: "lax",
-      secure: true
-    });
-    res.status(200).json({ user: user._id, status: true });
+    // res.cookie("jwt", token, {
+    //   httpOnly: false,
+    //   maxAge: maxAge * 1000 ,
+    //   // domain: "onrender.com",
+    //   sameSite: "lax",
+    //   secure: true
+    // });
+    // localStorage.setItem("token", token);
+    res.status(200).json({ user: user._id, token: token, status: true });
     // user.fav.push(movieId);
     // user.fav.push(movieId);
     

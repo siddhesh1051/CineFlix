@@ -11,7 +11,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 function Menu(props) {
     const navigate = useNavigate();
   const logOut = () => {
-    props.removeCookie("jwt");
+    localStorage.removeItem("token");  
     navigate("/login");
     window.location.reload();
   };
@@ -68,7 +68,7 @@ function Menu(props) {
                     </div>
                     <div className="mt-1">
           
-        <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Welcome, Siddhesh</p>
+        <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Welcome, {props.username}</p>
         <Link to="/login" onClick={logOut}><div className="logout">
         <p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center mt-1 bg-[#4e4e4f] rounded-lg cursor-pointer"><FiLogOut/><span className='ml-3'>Log Out</span></p>
         </div>
