@@ -37,7 +37,7 @@ function App() {
   const [username, setusername] = useState("")
   useEffect(() => {
     const verifyUser = async () => {
-      if (localStorage.getItem("token")===null) {
+      if (localStorage.getItem("token")===null || localStorage.getItem("token")==="undefined") {
         navigate("/login");
         
         
