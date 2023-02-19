@@ -1,11 +1,11 @@
 import './App.css';
 import "react-loading-skeleton/dist/skeleton.css";
-import "react-toastify/dist/ReactToastify.css";
 import { useEffect ,useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import NavBar from './components/NavBar/NavBar';
 import MovieDetail from './components/MovieDetail/MovieDetail';
@@ -33,12 +33,13 @@ import MyWatchLaterMovies from './components/watchLater/myWatchLater';
 function App() {
 
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies([]);
+  const path = window.location.pathname;
   const [username, setusername] = useState("")
   useEffect(() => {
     const verifyUser = async () => {
       if (localStorage.getItem("token")===null) {
         navigate("/login");
+        
         
       } else {
         
@@ -58,15 +59,17 @@ function App() {
           console.log(data.user)
         } else
         setusername(data.user)
-        // toast(`Hi ${data.user} 🦄`, {
-        //   theme: "dark",
-        // });
+        if(path==="/"){
+
+          toast(`Welcome👋, ${data.user}`, {
+            theme: "dark",
+          });
+        }
       }
       
     };
     verifyUser();
-  }, [navigate]);
-
+  }, []);
   
 
 
@@ -79,6 +82,7 @@ function App() {
     {/* {cookies.jwt &&<NavBar />} */}
     {localStorage.getItem("token")?<NavBar username={username}/>:null}
     {localStorage.getItem("token")?<Menu username={username} />:null} 
+        <ToastContainer />
             <Routes>
 
               
@@ -87,7 +91,7 @@ function App() {
                 <Route exact path="/" element = {<Home/>}></Route>
                 <Route path="/movies/search" element={<SearchMovie/>}></Route>
                 <Route path="/movies/:type" element={<MovieList />}></Route>
-                <Route path="/movie/:id" element = {< MovieDetail userFrom={cookies.jwt} currEmail={username}/>}></Route>
+                <Route path="/movie/:id" element = {< MovieDetail currEmail={username}/>}></Route>
                 <Route path="/movie/:id/similar" element = {< ShowSimilarMovie/>}></Route>
                 <Route path="/movie/:id/credits" element = {< ShowCastMovie/>}></Route>
                 <Route path="/favorites" element = {< MyFavorites currEmail={username}/>}></Route>
@@ -97,7 +101,7 @@ function App() {
               {/* For Tv */}
               <Route path="/tvs/:type" element={<TvList/>}></Route>
               <Route path="/tvs/search" element={<SearchTv/>}></Route>
-              <Route path="/tv/:id" element = {<TvDetail userFrom={cookies.jwt} currEmail={username}/>}></Route>
+              <Route path="/tv/:id" element = {<TvDetail currEmail={username}/>}></Route>
               <Route path="/tv/:id/similar" element = {< ShowSimilarTv/>}></Route>
               <Route path="/tv/:id/credits" element = {< ShowCastTv/>}></Route>
              

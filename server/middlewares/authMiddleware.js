@@ -9,7 +9,7 @@ module.exports.checkUser = (req, res, next) => {
   if (token) {
     jwt.verify(
       token,
-      "kishan sheth super secret key",
+      "sid",
       async (err, decodedToken) => {
         if (err) {
           res.json({ status: false });

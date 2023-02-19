@@ -7,7 +7,8 @@ import { HashLoader } from "react-spinners";
 import { removeMovieFromLiked } from "../../store";
 import { removeMovieFromWatchLater } from "../../store";
 import { useDispatch } from 'react-redux';
-
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 
 
@@ -49,11 +50,25 @@ const MovieDetail = (props) => {
           }).then(function(res){
            checkLiked();
         });
+        toast.success('Added to My Favorites', {
+            position: "bottom-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
+            
         //   setIsActive(!isActive);
           
         } catch (error) {
-            console.log(error);
-        }
+            toast.error(error, {
+                position: "bottom-center",
+                autoClose: 2500})
+            }
+        
       };
 
 
@@ -98,10 +113,23 @@ const MovieDetail = (props) => {
           }).then(function(res){
            checkWatchLater();
         });
+        toast.success('Added to Watch Later', {
+            position: "bottom-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
           
         } catch (error) {
-            console.log(error);
-        }
+            toast.error(error, {
+                position: "bottom-center",
+                autoClose: 2500})
+            }
+        
       };
 
 
@@ -238,7 +266,7 @@ const MovieDetail = (props) => {
                         : <button className='bookmarkbtn_clicked' onClick={() =>
                             dispatch(
                                 removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
-
+                                
                             )
                             && setisWatchActive(!isWatchActive)
 

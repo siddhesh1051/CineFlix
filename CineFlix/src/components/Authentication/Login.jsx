@@ -49,7 +49,7 @@ function Login() {
           else if (password) generateError(password);
         } else {
           navigate("/");
-          // window.location.reload();
+          window.location.reload();
         }
       }
     } catch (ex) {
@@ -88,7 +88,6 @@ function Login() {
         </span>
       </form>
     </div>
-      <ToastContainer />
     </div>
     // <div className="container">
     //   <h2>Login to your Account</h2>

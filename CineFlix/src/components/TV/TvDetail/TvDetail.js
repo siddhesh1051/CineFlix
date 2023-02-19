@@ -7,6 +7,8 @@ import { HashLoader } from "react-spinners";
 import { useDispatch } from 'react-redux';
 import { removeMovieFromLiked } from "../../../store";
 import { removeMovieFromWatchLater } from "../../../store";
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 
 
@@ -50,10 +52,22 @@ const TvDetail = (props) => {
            checkLiked();
         });
         //   setIsActive(!isActive);
+        toast.success('Added to My Favorites', {
+            position: "bottom-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
           
-        } catch (error) {
-            console.log(error);
-        }
+        }  catch (error) {
+            toast.error(error, {
+                position: "bottom-center",
+                autoClose: 2500})
+            }
       };
 
 
@@ -98,10 +112,22 @@ const TvDetail = (props) => {
           }).then(function(res){
            checkWatchLater();
         });
+        toast.success('Added to Watch Later', {
+            position: "bottom-center",
+            autoClose: 2500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            });
           
-        } catch (error) {
-            console.log(error);
-        }
+        }  catch (error) {
+            toast.error(error, {
+                position: "bottom-center",
+                autoClose: 2500})
+            }
       };
 
     const getData = async () => {
