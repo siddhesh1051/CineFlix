@@ -45,7 +45,7 @@ const TvDetail = (props) => {
 
     const addToList = async () => {
         try {
-          await axios.post("http://localhost:4000/addFav", {
+          await axios.post(process.env.REACT_APP_API +"/addFav", {
             email,
             data: currentMovieDetail,
           }).then(function(res){
@@ -73,7 +73,7 @@ const TvDetail = (props) => {
 
     const checkLiked = async () => {
         try {
-          await axios.post("http://localhost:4000/checkLiked", {
+          await axios.post(process.env.REACT_APP_API +"/checkLiked", {
             email,
             data: currentMovieDetail,
           })
@@ -89,7 +89,7 @@ const TvDetail = (props) => {
     }; 
     const checkWatchLater = async () => {
         try {
-          await axios.post("http://localhost:4000/checkWatchLater", {
+          await axios.post(process.env.REACT_APP_API +"/checkWatchLater", {
             email,
             data: currentMovieDetail,
           })
@@ -106,7 +106,7 @@ const TvDetail = (props) => {
 
     const addToWatchLater = async () => {
         try {
-          await axios.post("http://localhost:4000/addWatchLater", {
+          await axios.post(process.env.REACT_APP_API +"/addWatchLater", {
             email,
             data: currentMovieDetail,
           }).then(function(res){
