@@ -19,7 +19,7 @@ function Register() {
     }
   }, [cookies, navigate]);
 
-  const [values, setValues] = useState({ email: "", password: "" });
+  const [values, setValues] = useState({ username:"",email: "", password: "" });
   const generateError = (error) =>
     toast.error(error, {
       position: "bottom-right",
@@ -46,7 +46,7 @@ function Register() {
      
       if (data) {
         if (data.errors) {
-          const { email, password } = data.errors;
+          const {username, email, password } = data.errors;
           if (email) generateError(email);
           else if (password) generateError(password);
         } else {
@@ -68,10 +68,12 @@ function Register() {
       
 
       <form className="login-form" onSubmit={(e) => handleSubmit(e)}>
-        {/* <div className="textbox">
-          <input type="text" placeholder="Username"  onChange={(e) => setName(e.target.value)}/>
+        <div className="textbox">
+          <input type="text" placeholder="Username" name="username" onChange={(e) =>
+            setValues({ ...values, [e.target.name]: e.target.value })
+            }/>
           <span className="material-symbols-outlined"> account_circle </span>
-        </div> */}
+        </div>
         <div className="textbox">
           <input type="email" placeholder="Email"  name="email" onChange={(e) =>
             setValues({ ...values, [e.target.name]: e.target.value })

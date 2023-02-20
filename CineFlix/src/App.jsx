@@ -35,6 +35,7 @@ function App() {
   const navigate = useNavigate();
   const path = window.location.pathname;
   const [username, setusername] = useState("")
+  const [user, setuser] = useState("")
   useEffect(() => {
     const verifyUser = async () => {
       if (localStorage.getItem("token")===null || localStorage.getItem("token")===undefined) {
@@ -59,9 +60,11 @@ function App() {
           console.log(data.user)
         } else
         setusername(data.user)
+        setuser(data.userid)
+
         if(path==="/"){
 
-          toast(`Welcome👋, ${data.user}`, {
+          toast(`Welcome👋, ${data.userid}`, {
             theme: "dark",
           });
         }
@@ -80,8 +83,8 @@ function App() {
   
  
     {/* {cookies.jwt &&<NavBar />} */}
-    {localStorage.getItem("token")?<NavBar username={username}/>:null}
-    {localStorage.getItem("token")?<Menu username={username} />:null} 
+    {localStorage.getItem("token")?<NavBar username={username} user={user}/>:null}
+    {localStorage.getItem("token")?<Menu username={username} user={user}/>:null} 
         <ToastContainer />
             <Routes>
 

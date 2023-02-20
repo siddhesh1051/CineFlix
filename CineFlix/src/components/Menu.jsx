@@ -68,7 +68,7 @@ function Menu(props) {
                     </div>
                     <div className="mt-1">
           
-        <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Hi, {props.username}</p>
+        <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Hello {props.user}</p>
         <Link to="/login" onClick={logOut}><div className="logout">
         <p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center mt-1 bg-[#4e4e4f] rounded-lg cursor-pointer"><FiLogOut/><span className='ml-3'>Log Out</span></p>
         </div>
