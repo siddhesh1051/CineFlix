@@ -68,12 +68,8 @@ module.exports.login = async (req, res) => {
     //   sameSite: "lax",
     //   secure: true
     // });
-    // localStorage.setItem("token", token);
     res.status(200).json({ user: user._id, token: token, status: true });
-    // user.fav.push(movieId);
-    // user.fav.push(movieId);
     
-    // console.log(user.fav)
   } catch (err) {
     const errors = handleErrors(err);
     res.json({ errors, status: false });
