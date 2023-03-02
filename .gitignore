@@ -1,1 +1,6 @@
-.env
+CineFlix/node_modules
+server/node_modules
+
+CineFlix/.env
+server/.env
+
