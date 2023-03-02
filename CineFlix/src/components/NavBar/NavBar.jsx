@@ -28,7 +28,7 @@ function NavBar(props) {
     <div className="lg:min-w-[14%] left-[1px] text-sm">
 
 
-      <div className="sidebar flex flex-col rounded-lg fixed lg:visible invisible z-20" >
+      <div className="sidebar flex flex-col rounded-lg fixed lg:visible invisible z-20 max-h-screen overflow-y-auto" >
         <Link to="/"><img src={Logo} alt="" className="logo cursor-pointer my-6 mx-6 inline object-fill h-10 w-48" /></Link>
 
         <div className="movie__section mb-6 ">

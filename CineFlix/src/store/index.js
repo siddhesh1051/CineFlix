@@ -63,10 +63,7 @@ import {
     }
   );
 
-
-  
-  
-  
+ 
   const NetflixSlice = createSlice({
     name: "Netflix",
     initialState,

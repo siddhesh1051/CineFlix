@@ -37,7 +37,7 @@ function Menu(props) {
             {
 
                 
-                <div className={`sidebar flex flex-col rounded-lg fixed lg:invisible visible z-20 ${Toggle ? "left-[0]" : "left-[-100%]"} bg-[#1d1d1d] duration-300 ease-in-out text-sm`} >
+                <div className={`sidebar flex flex-col rounded-lg fixed lg:invisible visible z-20 max-h-screen overflow-y-auto ${Toggle ? "left-[0]" : "left-[-100%]"} bg-[#1d1d1d] duration-300 ease-in-out text-sm`} >
                     <Link to="/"><img src={Logo} alt="" className="logo cursor-pointer my-6 mx-6 inline object-fill h-10 w-48" /></Link>
 
                     <div className="movie__section mb-6 ">
