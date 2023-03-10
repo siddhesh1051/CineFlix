@@ -9,8 +9,8 @@ import { removeMovieFromLiked } from "../../../store";
 import { removeMovieFromWatchLater } from "../../../store";
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
-
-
+import PlayTv from './../PlayTv/PlayTv';
+import Modal from './../TvDetail/Modal';
 
 
 const TvDetail = (props) => {
@@ -21,6 +21,9 @@ const TvDetail = (props) => {
     const [isWatchActive, setisWatchActive] = useState(false);
     const [Videos, setVideos] = useState();
     const [Loading, setLoading] = useState(true)
+    const [showModal, setshowModal] = useState(false)
+    const [season, setseason] = useState(1)
+    const [episode, setepisode] = useState(1)
     const { id } = useParams();
     const dispatch = useDispatch();
 
@@ -252,9 +255,17 @@ const TvDetail = (props) => {
             {(
                 <div className="trailer&btn">
 
-                    <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
+                    {/* <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
                         Watch Trailer<i className="fa fa-play"></i>
-                    </a>
+                    </a> */}
+
+                    <button className='trailerbtn' onClick={() => setshowModal(true)}>
+                        Watch Now<i className="fa fa-play"></i>
+                    </button>
+                    {
+                        showModal && <Modal showModal={showModal} setshowModal={setshowModal} id={id}/>
+                    }
+
                     {!isWatchActive
                         ? <button className='bookmarkbtn' onClick={addToWatchLater}>
                             <i className="fa fa-bookmark"></i>
@@ -487,3 +498,6 @@ const TvDetail = (props) => {
 };
 
 export default TvDetail;
+
+
+

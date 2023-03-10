@@ -256,8 +256,8 @@ const MovieDetail = (props) => {
             {(
                 <div className="trailer&btn">
 
-                    <a href={hero.key ? `https://www.youtube.com/watch?v=${hero.key}` : ""} target='_blank' style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
-                        Watch Trailer<i className="fa fa-play"></i>
+                    <a href={`https://2embed.org/embed/movie?tmdb=${id}`} style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
+                        Watch Now<i className="fa fa-play"></i>
                     </a>
                     {!isWatchActive
                         ? <button className='bookmarkbtn' onClick={addToWatchLater}>
