@@ -256,7 +256,7 @@ const MovieDetail = (props) => {
             {(
                 <div className="trailer&btn">
 
-                    <a href={`https://2embed.org/embed/movie?tmdb=${id}`} style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
+                    <a href={`https://2embed.org/embed/movie?tmdb=${id}`} style={{ textDecoration: "none", color: "white" }} className="trailerbtn" target='_blank'>
                         Watch Now<i className="fa fa-play"></i>
                     </a>
                     {!isWatchActive
