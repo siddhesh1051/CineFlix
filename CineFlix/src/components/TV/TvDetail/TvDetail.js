@@ -135,7 +135,7 @@ const TvDetail = (props) => {
 
     const getData = async () => {
         const res = await axios.get(
-            `https://api.themoviedb.org/3/tv/${id}?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`
+            `https://api.themoviedb.org/3/tv/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
         )
         setMovie(res.data)
     };
@@ -147,7 +147,7 @@ const TvDetail = (props) => {
 
     const getCast = async () => {
         const res = await axios.get(
-            `https://api.themoviedb.org/3/tv/${id}/credits?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`
+            `https://api.themoviedb.org/3/tv/${id}/credits?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
         )
         setCast(res.data)
     };
@@ -158,7 +158,7 @@ const TvDetail = (props) => {
 
     const getSimilar = async () => {
         const res = await axios.get(
-            `https://api.themoviedb.org/3/tv/${id}/similar?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`
+            `https://api.themoviedb.org/3/tv/${id}/similar?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
         )
         setSimilar(res.data)
     };
@@ -170,7 +170,7 @@ const TvDetail = (props) => {
 
     const getVideos = async () => {
         const res = await axios.get(
-            `https://api.themoviedb.org/3/tv/${id}/videos?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`
+            `https://api.themoviedb.org/3/tv/${id}/videos?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
         )
         setVideos(res.data)
     };
@@ -470,7 +470,7 @@ const TvDetail = (props) => {
                                                     }
                                                     alt=""
                                                 />
-                                                <Link to={`/tv/${hero.id}?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US`} target='_blank' style={{ textDecoration: "none", color: "white" }}>
+                                                <Link to={`/tv/${hero.id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`} target='_blank' style={{ textDecoration: "none", color: "white" }}>
                                                     <div className="cards__overlay">
                                                         <div className="cast_details">
                                                             <span className="card__title">{hero.name}</span>

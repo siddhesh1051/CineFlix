@@ -28,7 +28,7 @@ const SearchMovie = () => {
 
 
     const getData = async () => {
-        const res = await axios.get(`https://api.themoviedb.org/3/search/tv?api_key=62502f0d2b544611def60f0137ff80c5&language=en-US&query=${searchText}&page=${Page}&include_adult=false`)
+        const res = await axios.get(`https://api.themoviedb.org/3/search/tv?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US&query=${searchText}&page=${Page}&include_adult=false`)
         setMovieList(res.data.results)
 
     }
