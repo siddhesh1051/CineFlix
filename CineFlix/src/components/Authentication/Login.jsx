@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReactGA from 'react-ga';
+
 
 function Login() {
   const [cookies] = useCookies([]);
@@ -15,6 +17,13 @@ function Login() {
     }
   }, [cookies, navigate]);
 
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
+
+  
+    
+  }, [])
+  
   const [values, setValues] = useState({ email: "", password: "" });
   const generateError = (error) =>
     toast.error(error, {

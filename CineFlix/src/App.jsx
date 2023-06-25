@@ -26,6 +26,11 @@ import MyFavorites from './components/myFavorites/MyFavorites';
 // import Signup from './components/Authentication/Signup/Signup';
 // import Login from './components/Authentication/Login/Login';
 import MyWatchLaterMovies from './components/watchLater/myWatchLater';
+import ReactGA from 'react-ga';
+
+const TRACKING_ID = "G-0G600S25JJ";
+ReactGA.initialize(TRACKING_ID);
+
 
 
 
@@ -37,6 +42,7 @@ function App() {
   const [username, setusername] = useState("")
   const [user, setuser] = useState("")
   useEffect(() => {
+    ReactGA.pageview(window.location.pathname);
     const verifyUser = async () => {
       if (localStorage.getItem("token")===null || localStorage.getItem("token")===undefined) {
         navigate("/login");
