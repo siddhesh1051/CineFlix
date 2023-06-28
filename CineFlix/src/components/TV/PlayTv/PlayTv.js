@@ -39,7 +39,7 @@ const PlayTv = ({id}) => {
         </div>
         
 
-        <a href={`https://2embed.org/embed/series?tmdb=${id}&s=${season}&e=${episode}`} style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
+        <a href={`https://embed.smashystream.com/playere.php?tmdb=${id}&season=${season}&episode=${episode}`} style={{ textDecoration: "none", color: "white" }} className="trailerbtn">
                         Watch Now<i className="fa fa-play"></i>
                     </a>
     </div>
