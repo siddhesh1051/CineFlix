@@ -30,20 +30,19 @@ import ReactGA from 'react-ga4';
 
 const TRACKING_ID = "G-0P7KW5611K";
 ReactGA.initialize(TRACKING_ID);
-ReactGA.pageview(window.location.pathname);
-
-
+ReactGA.send("pageview");
 
 
 
 function App() {
+
+ 
 
   const navigate = useNavigate();
   const path = window.location.pathname;
   const [username, setusername] = useState("")
   const [user, setuser] = useState("")
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
     const verifyUser = async () => {
       if (localStorage.getItem("token")===null || localStorage.getItem("token")===undefined) {
         navigate("/login");
