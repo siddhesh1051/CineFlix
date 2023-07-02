@@ -24,7 +24,7 @@ const Modal = ({showModal,setshowModal, id}) => {
 
                     </div>
         </div>
-        <a href={`https://embed.smashystream.com/playere.php?tmdb=${id}&season=${season}&episode=${episode}`} style={{ textDecoration: "none", color: "white", marginTop:"1.5rem"}} className="trailerbtn" target='_blank'>
+        <a href={`https://multiembed.mov/?video_id=${id}&tmdb=1&s=${season}&e=${episode}`} style={{ textDecoration: "none", color: "white", marginTop:"1.5rem"}} className="trailerbtn" target='_blank'>
                         Play<i className="fa fa-play"></i>
                     </a>
                           </div>

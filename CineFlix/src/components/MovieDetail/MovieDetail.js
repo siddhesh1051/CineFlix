@@ -255,7 +255,7 @@ const MovieDetail = (props) => {
             {(
                 <div className="trailer&btn">
 
-                    <a href={`https://embed.smashystream.com/playere.php?tmdb=${id}`} style={{ textDecoration: "none", color: "white" }} className="trailerbtn" target='_blank'>
+                    <a href={`https://multiembed.mov/?video_id=${id}&tmdb=1`} style={{ textDecoration: "none", color: "white" }} className="trailerbtn" target='_blank'>
                         Watch Now<i className="fa fa-play"></i>
                     </a>
                     {!isWatchActive
