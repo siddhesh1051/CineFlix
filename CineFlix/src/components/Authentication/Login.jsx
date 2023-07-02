@@ -18,8 +18,7 @@ function Login() {
   }, [cookies, navigate]);
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
-
+    ReactGA.send("pageview")
   
     
   }, [])
