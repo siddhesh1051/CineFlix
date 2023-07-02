@@ -26,10 +26,11 @@ import MyFavorites from './components/myFavorites/MyFavorites';
 // import Signup from './components/Authentication/Signup/Signup';
 // import Login from './components/Authentication/Login/Login';
 import MyWatchLaterMovies from './components/watchLater/myWatchLater';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
-const TRACKING_ID = "G-0G600S25JJ";
+const TRACKING_ID = "G-0P7KW5611K";
 ReactGA.initialize(TRACKING_ID);
+ReactGA.pageview(document.location.pathname);
 
 
 
