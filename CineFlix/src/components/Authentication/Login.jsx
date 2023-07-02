@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 
 
 function Login() {

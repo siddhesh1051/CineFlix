@@ -30,7 +30,7 @@ import ReactGA from 'react-ga4';
 
 const TRACKING_ID = "G-0P7KW5611K";
 ReactGA.initialize(TRACKING_ID);
-ReactGA.pageview(document.location.pathname);
+ReactGA.pageview(window.location.pathname);
 
 
 
