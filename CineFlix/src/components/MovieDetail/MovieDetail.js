@@ -250,9 +250,8 @@ const MovieDetail = (props) => {
 
                         <div className="tailer_button_link">
 
-{Videos && Videos.results &&
-    Videos.results.slice(0,1).map((hero) => (
-        <>
+
+        
             {(
                 <div className="trailer&btn">
 
@@ -290,11 +289,11 @@ const MovieDetail = (props) => {
                         </button>}
                 </div>
             )}
-        </>
-    ))}
+        
+  
 
 
-{
+{/* {
      Videos.results.length === 0 &&(
         <>
             {(
@@ -333,7 +332,7 @@ const MovieDetail = (props) => {
                 </div>
             )}
         </>
-    )}
+    )} */}
 
 </div>
 
