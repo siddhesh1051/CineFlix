@@ -25,7 +25,8 @@ function NavBar(props) {
   };
   return (
 
-    <div className="lg:min-w-[14%] left-[1px] text-sm">
+    <div 
+    className="lg:min-w-[14%] left-[1px] text-sm">
 
 
       <div className="sidebar flex flex-col rounded-lg fixed lg:visible invisible z-20 max-h-screen overflow-y-auto" >

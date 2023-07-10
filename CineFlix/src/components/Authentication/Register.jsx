@@ -3,29 +3,34 @@ import axios from "axios";
 import './signup.css'
 import 'material-symbols';
 import { toast } from "react-toastify";
-import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
+import Spinner from "./Spinner";
 
 
 
 function Register() {
-  const [cookies] = useCookies(["cookie-name"]);
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate("/");
 
     }
-  }, [cookies, navigate]);
+  }, [ navigate]);
 
   const [values, setValues] = useState({ username:"",email: "", password: "" });
+  const [isLoading, setisLoading] = useState(false);
+
+
   const generateError = (error) =>
     toast.error(error, {
       position: "bottom-right",
     });
   const handleSubmit = async (event) => {
+    
     event.preventDefault();
+    setisLoading(true)
+
     try {
       const { data } = await axios.post(
         process.env.REACT_APP_API + "/register",
@@ -58,11 +63,21 @@ function Register() {
     } catch (ex) {
       console.log(ex);
     }
+    setisLoading(false)
+
   };
   return (
 
     <div>
-      <div className="login">
+      <div 
+       initial={{ scale: 0, opacity: 0 }}
+       transition={{
+         delay: 0.15,
+         duration: 0.4
+       }}
+       whileInView={{ scale: 1, opacity: 1 }}
+       viewport={{ once: true }}
+       className="login">
       
       <h2 id='heading'>Signup</h2>
       
@@ -87,12 +102,20 @@ function Register() {
             }/>
           <span className="material-symbols-outlined"> lock </span>
         </div>
-        {/* <div className="textbox">
-          <input type="password" placeholder="Confirm Password"  onChange={(e) => setConfirmpassword(e.target.value)}/>
-          <span className="material-symbols-outlined"> lock </span>
-        </div> */}
-        <button type="submit" >Signup</button>
-        {/* <a href="https://website.com">Forgot your credentials?</a> */}
+       
+        {
+        isLoading
+        ?
+        <button 
+         type="submit " className="hover:scale-[1.01] active:scale-95 duration-200" ><Spinner/>
+         </button>
+
+        :
+        <button 
+         type="submit " className="hover:scale-[1.01] active:scale-95 duration-200" >Signup
+         </button>
+         }
+
         <span>
         Already have an account ?<Link to="/login"> Login</Link>
          </span>

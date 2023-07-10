@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 import axios from "axios";
 import 'material-symbols';
 import { Link, useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReactGA from 'react-ga4';
+import Spinner from './Spinner'
+
 
 
 function Login() {
-  const [cookies] = useCookies([]);
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token")) {
       navigate("/");
     }
-  }, [cookies, navigate]);
+  }, [ navigate]);
 
   useEffect(() => {
     ReactGA.send("pageview")
@@ -24,12 +24,14 @@ function Login() {
   }, [])
   
   const [values, setValues] = useState({ email: "", password: "" });
+  const [isLoading, setisLoading] = useState(false);
   const generateError = (error) =>
     toast.error(error, {
       position: "bottom-right",
     });
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setisLoading(true)
     try {
       const { data } = await axios.post(
         process.env.REACT_APP_API + "/login",
@@ -63,11 +65,15 @@ function Login() {
     } catch (ex) {
       console.log(ex);
     }
+
+    setisLoading(false)
   };
   return (
 
     <div>
-      <div className="login">
+      <div 
+       
+       className="login">
       
       <h2 id='heading'>Login</h2>
       
@@ -88,47 +94,26 @@ function Login() {
              }/>
           <span className="material-symbols-outlined"> lock </span>
         </div>
-       
-        <button type="submit" >Login</button>
-        {/* <a href="https://website.com">Forgot your credentials?</a> */}
+
+        {
+        isLoading
+        ?
+        <button 
+         type="submit " className="hover:scale-[1.01] active:scale-95 duration-200" ><Spinner/>
+         </button>
+
+        :
+        <button 
+         type="submit " className="hover:scale-[1.01] active:scale-95 duration-200" >Login
+         </button>
+         }
+        
         <span>
           Don't have an account ?<Link to="/signup"> Register </Link>
         </span>
       </form>
     </div>
     </div>
-    // <div className="container">
-    //   <h2>Login to your Account</h2>
-    //   <form onSubmit={(e) => handleSubmit(e)}>
-    //     <div>
-    //       <label htmlFor="email">Email</label>
-    //       <input
-    //         type="email"
-    //         name="email"
-    //         placeholder="Email"
-    //         onChange={(e) =>
-    //           setValues({ ...values, [e.target.name]: e.target.value })
-    //         }
-    //       />
-    //     </div>
-    //     <div>
-    //       <label htmlFor="password">Password</label>
-    //       <input
-    //         type="password"
-    //         placeholder="Password"
-    //         name="password"
-    //         onChange={(e) =>
-    //           setValues({ ...values, [e.target.name]: e.target.value })
-    //         }
-    //       />
-    //     </div>
-    //     <button type="submit">Submit</button>
-    //     <span>
-    //       Don't have an account ?<Link to="/register"> Register </Link>
-    //     </span>
-    //   </form>
-    //   <ToastContainer />
-    // </div>
   );
 }
 
