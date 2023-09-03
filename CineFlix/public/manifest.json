@@ -9,9 +9,9 @@
   "description": "Discover and watch movies for free",
   "icons": [
       {
-          "src": "./favicon.png",
+          "src": "./favicon.jpeg",
           "sizes": "196x196",
-          "type": "image/png",
+          "type": "image/png,image/jpeg,image/jpg",
           "purpose":"any maskable"
       }
       
