@@ -2,28 +2,54 @@ const User = require("../model/authModel");
 const jwt = require("jsonwebtoken");
 
 module.exports.checkUser = (req, res, next) => {
+  // console.log(req.body)
   const  {token}  = req.body;
-  console.log(token)
+  const {email} = req.params;
+  console.log("token : " +  token , "path : " + req.path )
   
-  
-  if (token) {
+  if(token){
     jwt.verify(
       token,
       "sid",
       async (err, decodedToken) => {
-        if (err) {
-          res.json({ status: false });
-          next();
-        } else {
+        if(err){
+          res.status(401).json({ msg:"Login to Proceed", status: false });
+        }
+        else{
           const user = await User.findById(decodedToken.id);
-          if (user) res.json({ status: true, user: user.email, userid: user.username});
-          else res.json({ status: false });
-          next();
+          if(user) next();
+          else next();
+
+
         }
       }
-    );
-  } else {
-    res.json({ status: false });
+    )
+  }
+  else if(req.path === `/liked/${email}` || req.path === `/watchLater/${email}`){
     next();
   }
+  else{
+    res.status(401).json({ msg:"Login to Proceed", status: false });
+  }
+    
+  // if (token) {
+  //   jwt.verify(
+  //     token,
+  //     "sid",
+  //     async (err, decodedToken) => {
+  //       if (err) {
+  //         res.status(401).json({ msg:"Login to Proceed", status: false });
+  //       } else {
+  //         const user = await User.findById(decodedToken.id);
+  //         if (user) next();
+  //         else next();
+  //         next();
+  //       }
+  //     }
+  //   );
+  // } else {
+  //   res.status(401).json({ msg:"Login to Proceed", status: false });
+
+  // }
+
 };

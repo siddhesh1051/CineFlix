@@ -4,6 +4,9 @@ import {
     createSlice,
   } from "@reduxjs/toolkit";
   import axios from "axios";
+import { toast } from "react-toastify";
+
+
   
   const initialState = {
     movies: [],
@@ -43,6 +46,13 @@ import {
   export const getUsersWatchLaterMovies = createAsyncThunk(
     "netflix/getWatchLater",
     async (email) => {
+
+
+      if(!email) {
+        toast.error("Login to Proceed");
+        // navigate.push("/login");
+      return []
+}
       const {
         data: { movies },
       } = await axios.get(process.env.REACT_APP_API +`/watchLater/${email}`);

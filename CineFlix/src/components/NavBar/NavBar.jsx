@@ -1,12 +1,14 @@
 import React from 'react'
 import Logo from './logo.png'
-import { FiBookmark, FiClock, FiHeart, FiLogOut, FiSearch, FiStar, FiTrendingUp } from "react-icons/fi";
+import { FiBookmark, FiClock, FiHeart, FiLogIn, FiLogOut, FiSearch, FiStar, FiTrendingUp } from "react-icons/fi";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function NavBar(props) {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
   const logOut = () => {
     localStorage.removeItem("token");
     navigate("/login");
@@ -59,12 +61,25 @@ function NavBar(props) {
           <NavLink to="/favorites"><p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiHeart /><span className='ml-3'>My Favourites</span></p></NavLink>
         </div>
         <div className="mt-1">
-
-          <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Hello {props.user}</p>
-          <Link to="/login" onClick={logOut}><div className="logout">
+          { 
+            token ?
+            <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Hello {props.user}</p>
+            :
+            <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Hello Guest</p>
+          }
+          { token ?
+            <Link to="/login" onClick={logOut}><div className="logout">
             <p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center mt-1 bg-[#4e4e4f] rounded-lg cursor-pointer"><FiLogOut /><span className='ml-3'>Log Out</span></p>
           </div>
           </Link>
+
+          :
+          <Link to="/login"><div className="logout">
+            <p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center mt-1 bg-[#4e4e4f] rounded-lg cursor-pointer"><FiLogIn /><span className='ml-3'>Log In</span></p>
+          </div>
+          </Link>
+          
+          }
         </div>
       </div>
       {/* <ToastContainer

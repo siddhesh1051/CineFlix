@@ -4,21 +4,38 @@ import './myWatchLater.css';
 import WatchLater from "../card/WatchLaterCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersWatchLaterMovies } from "../../store";
-// import MyWatchLater from './myWatchLater';
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function MyWatchLaterMovies(props) {
 
     const watchLater = useSelector((state) => state.netflix.watchLater);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
 
     const email = props.currEmail;
 
 
     useEffect(() => {
-        if (email) {
+        if(email){
             dispatch(getUsersWatchLaterMovies(email));
         }
+        else{
+            toast.warning("Login to proceed", {
+                    position: "top-center",
+                    autoClose: 2500, 
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
+            navigate("/login")
+        }
+    
+        
     }, [email]);
     
 

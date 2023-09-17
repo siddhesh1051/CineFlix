@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { BiMenuAltLeft } from 'react-icons/bi'
 import { IoIosArrowDropleft } from 'react-icons/io'
 import Logo from "../components/NavBar/logo.png"
-import { FiBookmark, FiClock, FiHeart, FiLogOut, FiSearch, FiStar, FiTrendingUp } from "react-icons/fi";
+import { FiBookmark, FiClock, FiHeart, FiLogIn, FiLogOut, FiSearch, FiStar, FiTrendingUp } from "react-icons/fi";
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 
@@ -10,13 +10,14 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 function Menu(props) {
     const navigate = useNavigate();
-  const logOut = () => {
-    localStorage.removeItem("token");  
-    navigate("/login");
-    window.location.reload();
-  };
+    const logOut = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+        window.location.reload();
+    };
 
     const [Toggle, setToggle] = useState(false)
+    const token = localStorage.getItem("token");
 
     return (
         <div>
@@ -25,7 +26,7 @@ function Menu(props) {
                 Toggle
                     ? <IoIosArrowDropleft onClick={() => {
                         setToggle(!Toggle)
-                        
+
                     }} className="fixed mt-0 ml-[13rem] z-30 text-[#c72f3c] text-5xl lg:invisible visible duration-300 ease-in-out" />
                     :
                     <BiMenuAltLeft onClick={() => {
@@ -36,7 +37,7 @@ function Menu(props) {
 
             {
 
-                
+
                 <div className={`sidebar flex flex-col rounded-lg fixed lg:invisible visible z-20 max-h-screen overflow-y-auto ${Toggle ? "left-[0]" : "left-[-100%]"} bg-[#1d1d1d] duration-300 ease-in-out text-sm`} >
                     <Link to="/"><img src={Logo} alt="" className="logo cursor-pointer my-6 mx-6 inline object-fill h-10 w-48" /></Link>
 
@@ -67,13 +68,27 @@ function Menu(props) {
                         <NavLink to="/favorites"><p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center cursor-pointer rounded-lg duration-300 ease-in-out hover:bg-[#262627] hover:text-[#ff505b]"><FiHeart /><span className='ml-3'>My Favourites</span></p></NavLink>
                     </div>
                     <div className="mt-1">
+
+                    { 
+            token ?
+            <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Hello {props.user}</p>
+            :
+            <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Hello Guest</p>
+          }
+          { token ?
+            <Link to="/login" onClick={logOut}><div className="logout">
+            <p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center mt-1 bg-[#4e4e4f] rounded-lg cursor-pointer"><FiLogOut /><span className='ml-3'>Log Out</span></p>
+          </div>
+          </Link>
+
+          :
+          <Link to="/login"><div className="logout">
+            <p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center mt-1 bg-[#4e4e4f] rounded-lg cursor-pointer"><FiLogIn /><span className='ml-3'>Log In</span></p>
+          </div>
+          </Link>
           
-        <p className="mx-6 my-1 flex items-center text-[#ff6c76] ">Hello {props.user}</p>
-        <Link to="/login" onClick={logOut}><div className="logout">
-        <p className="Top Rated px-2 mx-5 py-2 my-1 flex items-center mt-1 bg-[#4e4e4f] rounded-lg cursor-pointer"><FiLogOut/><span className='ml-3'>Log Out</span></p>
-        </div>
-        </Link>
-        </div>
+          }
+                    </div>
                 </div>
             }
         </div>

@@ -4,20 +4,36 @@ import './myFavorites.css';
 import { getUsersLikedMovies } from "../../store";
 import FavCards from "../card/FavCard";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function MyFavorites(props) {
 
     const movies = useSelector((state) => state.netflix.movies);
     const dispatch = useDispatch();
-
-
+    const navigate = useNavigate();
     const email = props.currEmail;
 
 
     useEffect(() => {
-        if (email) {
+        if(email){
             dispatch(getUsersLikedMovies(email));
         }
+        else{
+            toast.warning("Login to proceed", {
+                    position: "top-center",
+                    autoClose: 2500, 
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
+            navigate("/login")
+        }
+    
+        
     }, [email]);
 
 

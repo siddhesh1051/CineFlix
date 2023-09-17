@@ -11,7 +11,7 @@ const createToken = (id) => {
 const handleErrors = (err) => {
   let errors = { email: "", password: "" };
 
-  console.log(err);
+  // console.log(err);
   if (err.message === "incorrect email") {
     errors.email = "That email is not registered";
   }
@@ -34,6 +34,35 @@ const handleErrors = (err) => {
   return errors;
 };
 
+
+//get info from jwt
+module.exports.getUser = (req, res, next) => {
+  // console.log(req.body)
+  const  {token}  = req.body;
+  console.log(token)
+  
+  
+  if (token) {
+    jwt.verify(
+      token,
+      "sid",
+      async (err, decodedToken) => {
+        if (err) {
+          res.status(401).json({ msg:"Login to Proceed", status: false });
+        } else {
+          const user = await User.findById(decodedToken.id);
+          if (user) res.json({ status: true, user: user.email, userid: user.username});
+          else res.json({ status: false });
+          next();
+        }
+      }
+    );
+  } else {
+    res.status(401).json({ msg:"Login to Proceed", status: false });
+
+  }
+};
+
 module.exports.register = async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
@@ -50,7 +79,7 @@ module.exports.register = async (req, res, next) => {
 
     res.status(201).json({ user: user._id, token: token, created: true });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     const errors = handleErrors(err);
     res.json({ errors, created: false });
   }
@@ -77,9 +106,11 @@ module.exports.login = async (req, res) => {
 };
 
 module.exports.addFav = async (req, res) => {
+  
   try {
-    const { email, data } = req.body;
-    const user = await await User.findOne({ email });
+    const { email, data, token } = req.body;
+    if(!email || !token ) return res.status(401).json({ msg: "Login to Proceed" });
+    const user = await User.findOne({ email });
     if (user) {
       const { fav } = user;
       const movieAlreadyLiked = fav.find(({ id }) => id === data.id);
@@ -129,7 +160,7 @@ module.exports.removeFromLikedMovies = async (req, res) => {
 module.exports.getLikedMovies = async (req, res) => {
   try {
     const { email } = req.params;
-    const user = await await User.findOne({ email });
+    const user =  await User.findOne({ email });
     if (user) {
       return res.json({ msg: "success", movies: user.fav });
     } else return res.json({ msg: "User with given email not found." });
@@ -140,7 +171,8 @@ module.exports.getLikedMovies = async (req, res) => {
 module.exports.checkLiked = async (req, res) => {
   try {
     const { email, data } = req.body;
-    const user = await await User.findOne({ email });
+    // if(!email || !data ){ return res.json({ msg: "Something is Missing" });}
+    const user = await User.findOne({ email });
     if (user) {
       const { fav } = user;
       const movieAlreadyLiked = fav.find(({ id }) => id === data.id);
@@ -164,26 +196,34 @@ module.exports.checkLiked = async (req, res) => {
 module.exports.addWatchLater = async (req, res) => {
   try {
     const { email, data } = req.body;
+    // console.log(email, data);
+
     const user = await User.findOne({ email });
     if (user) {
       const { watch } = user;
       const movieAlreadyLiked = watch.find(({ id }) => id === data.id);
       if (!movieAlreadyLiked) {
         await User.findByIdAndUpdate(
-          
           user._id,
           {
             watch: [...user.watch, data],
           },
           { new: true }
         );
-      } else return res.json({ msg: "Movie already added to the liked list." });
-    } else await User.create({ email, watch: [data] });
-    return res.json({ msg: "Movie successfully added to liked list." });
+        return res.status(200).json({ msg: "Movie successfully added to Watch Later." });
+      } else {
+        return res.status(400).json({ msg: "Movie already added to the Watch Later." });
+      }
+    } else {
+      await User.create({ email, watch: [data] });
+      return res.status(200).json({ msg: "Movie successfully added to Watch Later." });
+    }
   } catch (error) {
-    return res.json({ msg: "Error adding movie to the liked list" });
+    console.error(error);
+    return res.status(500).json({ msg: "Error adding movie to the Watch Later" });
   }
 };
+
 
 module.exports.removeFromWatchLater = async (req, res) => {
   try {
@@ -215,7 +255,7 @@ module.exports.removeFromWatchLater = async (req, res) => {
 module.exports.getWatchLater = async (req, res) => {
   try {
     const { email } = req.params;
-    const user = await await User.findOne({ email });
+    const user =  await User.findOne({ email });
     if (user) {
       return res.json({ msg: "success", movies: user.watch });
     } else return res.json({ msg: "User with given email not found." });
@@ -227,7 +267,10 @@ module.exports.getWatchLater = async (req, res) => {
 module.exports.checkWatchLater = async (req, res) => {
   try {
     const { email, data } = req.body;
-    const user = await await User.findOne({ email });
+    // if(!email || !data ){ return res.json({ msg: "Something is Missing" });}
+
+    const user =  await User.findOne({ email });
+    // console.log(user);
     if (user) {
       const { watch } = user;
       const movieAlreadyLiked = watch.find(({ id }) => id === data.id);

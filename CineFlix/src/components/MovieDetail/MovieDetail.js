@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./movie.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { HashLoader } from "react-spinners";
@@ -22,8 +22,11 @@ const MovieDetail = (props) => {
     const [Loading, setLoading] = useState(true)
     const { id } = useParams();
     const dispatch = useDispatch();
+    const token = localStorage.getItem("token");
 
     const email = props.currEmail;
+
+    const navigate =  useNavigate();
 
 
     
@@ -33,7 +36,8 @@ const MovieDetail = (props) => {
     }, []);
     
     useEffect(() => {
-        
+        getData();
+
         checkLiked(); 
         checkWatchLater();
         
@@ -47,10 +51,10 @@ const MovieDetail = (props) => {
           await axios.post(process.env.REACT_APP_API +"/addFav", {
             email,
             data: currentMovieDetail,
+            token: token
           }).then(function(res){
            checkLiked();
-        });
-        toast.success('Added to My Favorites', {
+           toast.success('Added to My Favorites', {
             position: "bottom-center",
             autoClose: 2500,
             hideProgressBar: false,
@@ -60,16 +64,39 @@ const MovieDetail = (props) => {
             progress: undefined,
             theme: "dark",
             });
+        });
+        
             
         //   setIsActive(!isActive);
           
         } catch (error) {
-            toast.error(error, {
-                position: "bottom-center",
-                autoClose: 2500})
+            // console.log(error);
+
+           
+                if(error.response.status === 401){
+                localStorage.removeItem("token");
+                navigate('/login')
+                toast.warning(error.response.data.msg, {
+                    position: "bottom-center",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
             }
+            else{
+                toast.error(error, {
+                    position: "bottom-center",
+                    autoClose: 2500})
+            }
+
+
+           
         
-      };
+      }};
 
 
     const checkLiked = async () => {
@@ -77,6 +104,7 @@ const MovieDetail = (props) => {
           await axios.post(process.env.REACT_APP_API +"/checkLiked", {
             email,
             data: currentMovieDetail,
+            // token: token
           })
             .then(res => {
                 setIsActive(res.data.movieAlreadyLiked)
@@ -93,6 +121,7 @@ const MovieDetail = (props) => {
           await axios.post(process.env.REACT_APP_API +"/checkWatchLater", {
             email,
             data: currentMovieDetail,
+            // token: token
           })
             .then(res => {
                 setisWatchActive(res.data.movieAlreadyLiked)
@@ -107,13 +136,15 @@ const MovieDetail = (props) => {
 
     const addToWatchLater = async () => {
         try {
-          await axios.post(process.env.REACT_APP_API +"/addWatchLater", {
+          const response = await axios.post(process.env.REACT_APP_API + "/addWatchLater", {
             email,
             data: currentMovieDetail,
-          }).then(function(res){
-           checkWatchLater();
-        });
-        toast.success('Added to Watch Later', {
+            token: token,
+          });
+          console.log(response.data); // Handle the response data here
+          await checkWatchLater();
+      
+          toast.success("Added to Watch Later", {
             position: "bottom-center",
             autoClose: 2500,
             hideProgressBar: false,
@@ -122,15 +153,31 @@ const MovieDetail = (props) => {
             draggable: true,
             progress: undefined,
             theme: "dark",
-            });
-          
+          });
         } catch (error) {
-            toast.error(error, {
-                position: "bottom-center",
-                autoClose: 2500})
-            }
-        
+          if (error.response && error.response.status === 401) {
+            localStorage.removeItem("token");
+            navigate("/login");
+            toast.warning(error.response.data.msg, {
+              position: "bottom-center",
+              autoClose: 2500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+          } else {
+            console.error(error);
+            toast.error("An error occurred", {
+              position: "bottom-center",
+              autoClose: 2500,
+            });
+          }
+        }
       };
+      
 
 
     
@@ -140,6 +187,8 @@ const MovieDetail = (props) => {
             `https://api.themoviedb.org/3/movie/${id}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`
         )
         setMovie(res.data)
+        console.log(currentMovieDetail)
+        
     };
 
     useEffect(() => {
@@ -293,46 +342,7 @@ const MovieDetail = (props) => {
   
 
 
-{/* {
-     Videos.results.length === 0 &&(
-        <>
-            {(
-                <div className="trailer&btn">
 
-                    
-                    {!isWatchActive
-                        ? <button className='bookmarkbtn' onClick={addToWatchLater}>
-                            <i className="fa fa-bookmark"></i>
-                        </button>
-                        : <button className='bookmarkbtn_clicked' onClick={() =>
-                            dispatch(
-                                removeMovieFromWatchLater({ movieId: currentMovieDetail.id, email })
-
-                            )
-                            && setisWatchActive(!isWatchActive)
-
-                        }>
-                            <i className="fa fa-bookmark"></i>
-                        </button>}
-
-                    {!isActive
-                        ? <button className='sharebtn' onClick={addToList}>
-                            <i className="fa fa-heart"></i>
-                        </button>
-                        : <button className='sharebtn_clicked' onClick={() =>
-                            dispatch(
-                                removeMovieFromLiked({ movieId: currentMovieDetail.id, email })
-
-                            )
-                            && setIsActive(!isActive)
-
-                        }>
-                            <i className="fa fa-heart"></i>
-                        </button>}
-                </div>
-            )}
-        </>
-    )} */}
 
 </div>
 

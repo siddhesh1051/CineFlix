@@ -45,7 +45,7 @@ function App() {
   useEffect(() => {
     const verifyUser = async () => {
       if (localStorage.getItem("token")===null || localStorage.getItem("token")===undefined) {
-        navigate("/login");
+        // navigate("/login");
         
         
       } else {
@@ -62,7 +62,7 @@ function App() {
         
         if (!data.status) {
           localStorage.removeItem("token"); 
-           navigate("/login");
+          //  navigate("/login");
           console.log(data.user)
         } else
         setusername(data.user)
@@ -83,18 +83,18 @@ function App() {
 
 
   return (
-    <div className="flex lg:gap-[1.5rem] ">
+    <div className="flex lg:gap-[1.5rem]">
     {/* <Router>  */}
 
   
  
-    {/* {cookies.jwt &&<NavBar />} */}
-    {localStorage.getItem("token")?<NavBar username={username} user={user}/>:null}
-    {localStorage.getItem("token")?<Menu username={username} user={user}/>:null} 
+    {/* {localStorage.getItem("token")?<NavBar username={username} user={user}/>:null}
+    {localStorage.getItem("token")?<Menu username={username} user={user}/>:null}  */}
+    {path !=='/login' &&  path !== '/signup' && <NavBar username={username} user={user}/>}
+    {path !=='/login' &&  path !== '/signup' && <Menu username={username} user={user}/>}
+    
         <ToastContainer />
-            <Routes>
-
-              
+            <Routes>           
 
               {/* For Movies */}
                 <Route exact path="/" element = {<Home/>}></Route>

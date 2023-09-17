@@ -22,7 +22,7 @@ const Home = () => {
     }, [])
 
     return (
-        <>
+        <>  
             <div className="poster">
             {popular.length > 0 &&
                 <Carousel

@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import PlayTv from './../PlayTv/PlayTv';
 import Modal from './../TvDetail/Modal';
-
+import { useNavigate } from "react-router-dom";
 
 const TvDetail = (props) => {
     const [currentMovieDetail, setMovie] = useState();
@@ -30,6 +30,8 @@ const TvDetail = (props) => {
 
 
     const email = props.currEmail;
+    const navigate = useNavigate();
+    const token = localStorage.getItem("token");
 
     // Initial Useeffect
     useEffect(() => {
@@ -37,7 +39,7 @@ const TvDetail = (props) => {
 
     }, []);
     useEffect(() => {
-        
+        getData();
         checkLiked(); 
         checkWatchLater();
         
@@ -51,6 +53,8 @@ const TvDetail = (props) => {
           await axios.post(process.env.REACT_APP_API +"/addFav", {
             email,
             data: currentMovieDetail,
+            token: token
+
           }).then(function(res){
            checkLiked();
         });
@@ -67,11 +71,28 @@ const TvDetail = (props) => {
             });
           
         }  catch (error) {
-            toast.error(error, {
-                position: "bottom-center",
-                autoClose: 2500})
+             if(error.response.status === 401){
+                localStorage.removeItem("token");
+                navigate('/login')
+                toast.warning(error.response.data.msg, {
+                    position: "bottom-center",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
             }
-      };
+            else{
+                toast.error(error, {
+                    position: "bottom-center",
+                    autoClose: 2500})
+            }
+
+
+      }};
 
 
     const checkLiked = async () => {
@@ -79,6 +100,8 @@ const TvDetail = (props) => {
           await axios.post(process.env.REACT_APP_API +"/checkLiked", {
             email,
             data: currentMovieDetail,
+            token: token
+
           })
             .then(res => {
                 setIsActive(res.data.movieAlreadyLiked)
@@ -95,6 +118,8 @@ const TvDetail = (props) => {
           await axios.post(process.env.REACT_APP_API +"/checkWatchLater", {
             email,
             data: currentMovieDetail,
+            token: token
+
           })
             .then(res => {
                 setisWatchActive(res.data.movieAlreadyLiked)
@@ -112,10 +137,11 @@ const TvDetail = (props) => {
           await axios.post(process.env.REACT_APP_API +"/addWatchLater", {
             email,
             data: currentMovieDetail,
+            token: token
+
           }).then(function(res){
            checkWatchLater();
-        });
-        toast.success('Added to Watch Later', {
+           toast.success('Added to Watch Later', {
             position: "bottom-center",
             autoClose: 2500,
             hideProgressBar: false,
@@ -125,13 +151,32 @@ const TvDetail = (props) => {
             progress: undefined,
             theme: "dark",
             });
+        });
+       
           
         }  catch (error) {
-            toast.error(error, {
-                position: "bottom-center",
-                autoClose: 2500})
+            if(error.response.status === 401){
+                localStorage.removeItem("token");
+                navigate('/login')
+                toast.warning(error.response.data.msg, {
+                    position: "bottom-center",
+                    autoClose: 2500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    });
             }
-      };
+            else{
+                toast.error(error, {
+                    position: "bottom-center",
+                    autoClose: 2500})
+            }
+
+
+            }};
 
     const getData = async () => {
         const res = await axios.get(
