@@ -43,7 +43,7 @@ mongoose
 
 app.use(
   cors({
-    origin: ["https://www.cineflix.live","https://cineflix.live","https://cineflix-pro.onrender.com","https://cineflix-pro.vercel.app","http://localhost:3000"],
+    origin: ["https://cineflix.live"],
     methods: ["GET", "POST","PUT","DELETE"],
     credentials: true,
   })
