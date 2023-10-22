@@ -42,7 +42,11 @@ mongoose
 // );
 
 app.use(
-  cors()
+  cors({
+    origin: ["https://www.cineflix.live/"],
+    methods: ["GET", "POST","PUT","DELETE"],
+    credentials: true,
+  })
 );
 
 // app.use(cookieParser());
