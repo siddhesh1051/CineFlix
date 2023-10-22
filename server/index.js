@@ -30,17 +30,22 @@ mongoose
     console.log("error in connecting db");
   });
 
+// app.use(
+//   cors({
+//     origin: "https://cineflix.live",
+//     // origin: ["https://cineflix-pro.onrender.com"],
+//     // origin: ["https://cineflix-pro.vercel.app"],
+//     // origin: ["http://localhost:3000"],
+//     methods: ["GET", "POST","PUT","DELETE"],
+//     credentials: true,
+//   })
+// );
+
 app.use(
-  cors({
-    origin: "https://cineflix.live",
-    // origin: ["https://cineflix-pro.onrender.com"],
-    // origin: ["https://cineflix-pro.vercel.app"],
-    // origin: ["http://localhost:3000"],
-    methods: ["GET", "POST","PUT","DELETE"],
-    credentials: true,
-  })
+  cors()
 );
-app.use(cookieParser());
+
+// app.use(cookieParser());
 
 app.use(express.json());
 app.use("/", authRoutes);
