@@ -9,6 +9,8 @@ import { removeMovieFromWatchLater } from "../../store";
 import { useDispatch } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import { ChangeTitleFunction } from '../../utils/ChangeTitleFunction';
+
 
 
 
@@ -23,10 +25,9 @@ const MovieDetail = (props) => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const token = localStorage.getItem("token");
-
     const email = props.currEmail;
-
     const navigate = useNavigate();
+    ChangeTitleFunction(`${currentMovieDetail ? currentMovieDetail.original_title : ""} | Cineflix`);
 
 
 

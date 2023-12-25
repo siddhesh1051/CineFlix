@@ -5,15 +5,22 @@ import Cards from "../card/Card"
 import axios from "axios"
 import "react-loading-skeleton/dist/skeleton.css";
 import { HashLoader } from "react-spinners";
+import { ChangeTitleFunction } from './../../utils/ChangeTitleFunction';
+
 
 
 const MovieList = () => {
+
+    const initialCapitalize = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
 
     const [movieList, setMovieList] = useState([])
     const [Page, setPage] = useState(1)
     const [Loading, setLoading] = useState(true)
     const { type } = useParams()
+    ChangeTitleFunction((type ? initialCapitalize(type.replace("_"," "))+ " Movies" : "Now Playing") + " | Cineflix")
 
 
     useEffect(() => {

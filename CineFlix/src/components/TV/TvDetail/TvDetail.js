@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import PlayTv from './../PlayTv/PlayTv';
 import Modal from './../TvDetail/Modal';
 import { useNavigate } from "react-router-dom";
+import { ChangeTitleFunction } from '../../../utils/ChangeTitleFunction';
 
 const TvDetail = (props) => {
     const [currentMovieDetail, setMovie] = useState();
@@ -26,6 +27,9 @@ const TvDetail = (props) => {
     const [episode, setepisode] = useState(1)
     const { id } = useParams();
     const dispatch = useDispatch();
+    ChangeTitleFunction(`${currentMovieDetail ? currentMovieDetail.name : ""} | Cineflix`);
+
+
 
 
 

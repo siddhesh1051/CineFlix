@@ -6,6 +6,7 @@ import FavCards from "../card/FavCard";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { ChangeTitleFunction } from './../../utils/ChangeTitleFunction';
 
 function MyFavorites(props) {
 
@@ -13,6 +14,7 @@ function MyFavorites(props) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const email = props.currEmail;
+    ChangeTitleFunction("My Favorites | Cineflix");
 
 
     useEffect(() => {

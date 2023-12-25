@@ -6,12 +6,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsersWatchLaterMovies } from "../../store";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { ChangeTitleFunction } from './../../utils/ChangeTitleFunction';
 
 function MyWatchLaterMovies(props) {
 
     const watchLater = useSelector((state) => state.netflix.watchLater);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    ChangeTitleFunction("Watch Later | Cineflix");
+
 
 
     const email = props.currEmail;

@@ -5,6 +5,7 @@ import axios from "axios"
 import "react-loading-skeleton/dist/skeleton.css";
 import { FiSearch } from "react-icons/fi"
 import { HashLoader } from "react-spinners";
+import { ChangeTitleFunction } from './../../utils/ChangeTitleFunction';
 
 
 const SearchMovie = () => {
@@ -13,6 +14,7 @@ const SearchMovie = () => {
     const [searchText, setsearchText] = useState("")
     const [Page, setPage] = useState(1)
     const [Loading, setLoading] = useState(true)
+    ChangeTitleFunction("Search TV Shows | Cineflix")
 
 
 
