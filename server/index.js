@@ -3,7 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
 const cookieParser = require("cookie-parser");
-const dotenv = require('dotenv').config();
+const dotenv = require("dotenv").config();
 
 const PORT = process.env.PORT || 4000;
 
@@ -17,7 +17,7 @@ app.listen(PORT, (err) => {
   }
 });
 
-mongoose.set('strictQuery', false);
+mongoose.set("strictQuery", false);
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -43,8 +43,14 @@ mongoose
 
 app.use(
   cors({
-    origin: ["https://www.cineflix.live","https://cineflix.live","https://cineflix-pro.onrender.com","https://cineflix-pro.vercel.app","http://localhost:3000"],
-    methods: ["GET", "POST","PUT","DELETE"],
+    origin: [
+      "https://www.cineflixx.live",
+      "https://cineflixx.live",
+      "https://cineflix-pro.onrender.com",
+      "https://cineflix-pro.vercel.app",
+      "http://localhost:3000",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
@@ -57,4 +63,3 @@ app.get("/", (req, res) => {
   res.send("Hello localstorage");
 });
 // app.use("/favorite",  require('./routes/favorite'));
-
